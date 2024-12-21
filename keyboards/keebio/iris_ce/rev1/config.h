@@ -3,6 +3,8 @@
 
 #pragma once
 
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD 1
+
 #define TAPPING_TERM 180
 #define USB_VBUS_PIN GP0
 #define SERIAL_USART_FULL_DUPLEX
