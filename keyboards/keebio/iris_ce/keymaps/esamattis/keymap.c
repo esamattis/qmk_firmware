@@ -72,6 +72,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define COPY LGUI(KC_C)
 #define PASTE LGUI(KC_V)
 
+// Layer 1
 #define L1A_1 _______
 #define L1KC_1 KC_1
 #define L1KC_2 KC_2
@@ -85,7 +86,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_0 KC_0
 #define L1A_2 _______
 
-#define L1A_3 _______
+#define L1A_3 MO(_MOUSE)
 #define L1KC_Q KC_Q
 #define L1KC_W KC_W
 #define L1KC_E KC_E
@@ -98,7 +99,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_P KC_P
 #define L1A_4 _______
 
-#define L1A_5 _______
+#define L1A_5 KC_TAB
 #define L1KC_A KC_A
 #define L1KC_S KC_S
 #define L1KC_D KC_D
@@ -111,7 +112,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_6 _______
 #define L1A_7 _______
 
-#define L1A_8 _______
+#define L1A_8  KC_LSFT
 #define L1KC_Z KC_Z
 #define L1KC_X KC_X
 #define L1KC_C KC_C
@@ -138,11 +139,22 @@ bool caps_word_press_user(uint16_t keycode) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
-     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,            /* */     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-     MO(_MOUSE),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            /* */     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BACKSPACE,
-     KC_TAB, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            /* */     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-     KC_LSFT, KC_Z,    MT_X, MT_C, MT_V, KC_B, MO(_MOUSE),            /* */    _______ , KC_N, MT_M, MT_KOMM, MT_DOT, KC_SLSH, KC_RSFT,
-                                    _______, MO(_LOWER), KC_ENT,   /* */     KC_SPC,  MO(_RAISE), KC_BACKSPACE
+     // _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,            /* */     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+     // MO(_MOUSE),  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            /* */     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BACKSPACE,
+     // KC_TAB, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,            /* */     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+     // KC_LSFT, KC_Z,    MT_X, MT_C, MT_V, KC_B, MO(_MOUSE),            /* */    _______ , KC_N, MT_M, MT_KOMM, MT_DOT, KC_SLSH, KC_RSFT,
+     //                                _______, MO(_LOWER), KC_ENT,   /* */     KC_SPC,  MO(_RAISE), KC_BACKSPACE
+     //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+        L1A_1,     L1KC_1,    L1KC_2,    L1KC_3,    L1KC_4,    L1KC_5,                               L1KC_6,    L1KC_7,    L1KC_8,    L1KC_9,    L1KC_0,    L1A_2,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L1A_3,     L1KC_Q,    L1KC_W,    L1KC_E,    L1KC_R,    L1KC_T,                               L1KC_Y,    L1KC_U,    L1KC_I,    L1KC_O,    L1KC_P,    L1A_4,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L1A_5,     L1KC_A,    L1KC_S,    L1KC_D,    L1KC_F,    L1KC_G,                               L1KC_H,    L1KC_J,    L1KC_K,    L1KC_L,    L1A_6,     L1A_7,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L1A_8,     L1KC_Z,    L1KC_X,    L1KC_C,    L1KC_V,    L1KC_B,    L1A_9,             L1A_10, L1KC_N,    L1KC_M,    L1A_11,    L1A_12,    L1A_13,    L1A_14,
+     //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
+                                       L1A_15,  L1A_16,  L1A_17,                                   L1A_18,  L1A_19,   L1A_20
+                                   // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   ),
 
   [_LOWER] = LAYOUT(
@@ -167,21 +179,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______, _______, _______, _______,                  QK_MOUSE_WHEEL_RIGHT,  QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, QK_MOUSE_WHEEL_LEFT, _______,
      _______, _______, _______, _______, _______, _______, _______,          _______, QK_MOUSE_WHEEL_RIGHT, QK_MOUSE_WHEEL_UP,  QK_MOUSE_WHEEL_DOWN, QK_MOUSE_WHEEL_LEFT, _______, _______,
                                     _______, _______, _______,                   MS_BTN1, MS_BTN2, _______
-  ),
-
-
-  [_QWERTY2] = LAYOUT(
-  //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
-     L1A_1,     L1KC_1,    L1KC_2,    L1KC_3,    L1KC_4,    L1KC_5,                               L1KC_6,    L1KC_7,    L1KC_8,    L1KC_9,    L1KC_0,    L1A_2,
-  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-     L1A_3,     L1KC_Q,    L1KC_W,    L1KC_E,    L1KC_R,    L1KC_T,                               L1KC_Y,    L1KC_U,    L1KC_I,    L1KC_O,    L1KC_P,    L1A_4,
-  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-     L1A_5,     L1KC_A,    L1KC_S,    L1KC_D,    L1KC_F,    L1KC_G,                               L1KC_H,    L1KC_J,    L1KC_K,    L1KC_L,    L1A_6,     L1A_7,
-  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-     L1A_8,     L1KC_Z,    L1KC_X,    L1KC_C,    L1KC_V,    L1KC_B,    L1A_9,             L1A_10, L1KC_N,    L1KC_M,    L1A_11,    L1A_12,    L1A_13,    L1A_14,
-  //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
-                                    L1A_15,  L1A_16,  L1A_17,                                   L1A_18,  L1A_19,   L1A_20
-                                // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   )
 
 };
