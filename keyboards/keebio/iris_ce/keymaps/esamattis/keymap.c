@@ -133,70 +133,136 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_19 MO(_RAISE)
 #define L1A_20 _______
 
-// // Layer 1
-// #define L1A_1 _______
-// #define L1KC_1 KC_1
-// #define L1KC_2 KC_2
-// #define L1KC_3 KC_3
-// #define L1KC_4 KC_4
-// #define L1KC_5 KC_5
-// #define L1KC_6 KC_6
-// #define L1KC_7 KC_7
-// #define L1KC_8 KC_8
-// #define L1KC_9 KC_9
-// #define L1KC_0 KC_0
-// #define L1A_2 _______
+// Layer 2
+#define L2A_1 _______
+#define L2KC_1 _______
+#define L2KC_2 _______
+#define L2KC_3 _______
+#define L2KC_4 _______
+#define L2KC_5 _______
+#define L2KC_6 _______
+#define L2KC_7 _______
+#define L2KC_8 _______
+#define L2KC_9 _______
+#define L2KC_0 _______
+#define L2A_2 _______
 
-// #define L1A_3 MO(_MOUSE)
-// #define L1KC_Q KC_Q
-// #define L1KC_W KC_W
-// #define L1KC_E KC_E
-// #define L1KC_R KC_R
-// #define L1KC_T KC_T
-// #define L1KC_Y KC_Y
-// #define L1KC_U KC_U
-// #define L1KC_I KC_I
-// #define L1KC_O KC_O
-// #define L1KC_P KC_P
-// #define L1A_4 KC_BACKSPACE
+#define L2A_3 _______
+#define L2KC_Q LCAG(KC_Q) // Rectagle, Left Control + Alt + GUI
+#define L2KC_W LCAG(KC_W) // ...
+#define L2KC_E LCAG(KC_E) // ...
+#define L2KC_R _______
+#define L2KC_T _______
+#define L2KC_Y LALT(KC_7) // Pipe |
+#define L2KC_U LSFT(KC_3) // Hash #
+#define L2KC_I LSFT(KC_MINS) // Question mark ?
+#define L2KC_O LSFT(KC_1) // Exclamation mark !
+#define L2KC_P _______
+#define L2A_4 _______
 
-// #define L1A_5 KC_TAB
-// #define L1KC_A KC_A
-// #define L1KC_S KC_S
-// #define L1KC_D KC_D
-// #define L1KC_F KC_F
-// #define L1KC_G KC_G
-// #define L1KC_H KC_H
-// #define L1KC_J KC_J
-// #define L1KC_K KC_K
-// #define L1KC_L KC_L
-// #define L1A_6 _______
-// #define L1A_7 _______
+#define L2A_5 _______
+#define L2KC_A LCAG(KC_A) // Rectagle, Left Control + Alt + GUI
+#define L2KC_S LCAG(KC_S) // ...
+#define L2KC_D LCAG(KC_D) // ...
+#define L2KC_F LGUI(KC_C)
+#define L2KC_G LGUI(KC_V)
+#define L2KC_H KC_NUHS // Single quote '
+#define L2KC_J LSFT(KC_SLASH) // Underscore _
+#define L2KC_K LSFT(KC_2) // Double quote "
+#define L2KC_L BACKTICK // Backtick ` (macro)
+#define L2A_6 LSFT(KC_NUHS) // Asterisk *
+#define L2A_7 _______
 
-// #define L1A_8  KC_LSFT
-// #define L1KC_Z KC_Z
-// #define L1KC_X MT(MOD_LCTL,KC_X)
-// #define L1KC_C MT(MOD_LALT,KC_C)
-// #define L1KC_V MT(MOD_LGUI,KC_V)
+#define L2A_8  _______
+#define L2KC_Z LCAG(KC_Z) // Rectagle, Left Control + Alt + GUI
+#define L2KC_X LCAG(KC_X) // ...
+#define L2KC_C LCAG(KC_C) // ...
+#define L2KC_V _______
 
-// #define L1KC_B KC_B
-// #define L1KC_N KC_N
-// #define L1KC_M MT(MOD_LGUI,KC_M)
-// #define L1A_11 MT(MOD_LALT,KC_COMM)
-// #define L1A_12 MT(MOD_LCTL,KC_DOT)
-// #define L1A_13 KC_SLSH
-// #define L1A_14 KC_RSFT
+#define L2KC_B _______
+#define L2KC_N _______
+#define L2KC_M _______
+#define L2A_11 _______
+#define L2A_12 _______
+#define L2A_13 _______
+#define L2A_14 _______
 
-// #define L1A_9 _______
-// #define L1A_10 _______
+#define L2A_9 _______
+#define L2A_10 _______
 
-// #define L1A_15 _______
-// #define L1A_16 MO(_LOWER)
-// #define L1A_17 KC_ENT
+#define L2A_15 _______
+#define L2A_16 _______
+#define L2A_17 _______
 
-// #define L1A_18 KC_SPACE
-// #define L1A_19 MO(_RAISE)
-// #define L1A_20 _______
+#define L2A_18 _______
+#define L2A_19 _______
+#define L2A_20 _______
+
+// // Layer 2
+// #define L2A_1 _______
+// #define L2KC_1 _______
+// #define L2KC_2 _______
+// #define L2KC_3 _______
+// #define L2KC_4 _______
+// #define L2KC_5 _______
+// #define L2KC_6 _______
+// #define L2KC_7 _______
+// #define L2KC_8 _______
+// #define L2KC_9 _______
+// #define L2KC_0 _______
+// #define L2A_2 _______
+
+// #define L2A_3 _______
+// #define L2KC_Q _______
+// #define L2KC_W _______
+// #define L2KC_E _______
+// #define L2KC_R _______
+// #define L2KC_T _______
+// #define L2KC_Y _______
+// #define L2KC_U _______
+// #define L2KC_I _______
+// #define L2KC_O _______
+// #define L2KC_P _______
+// #define L2A_4 _______
+
+// #define L2A_5 _______
+// #define L2KC_A _______
+// #define L2KC_S _______
+// #define L2KC_D _______
+// #define L2KC_F _______
+// #define L2KC_G _______
+// #define L2KC_H _______
+// #define L2KC_J _______
+// #define L2KC_K _______
+// #define L2KC_L _______
+// #define L2A_6 _______
+// #define L2A_7 _______
+
+// #define L2A_8  _______
+// #define L2KC_Z _______
+// #define L2KC_X _______
+// #define L2KC_C _______
+// #define L2KC_V _______
+
+// #define L2KC_B _______
+// #define L2KC_N _______
+// #define L2KC_M _______
+// #define L2A_11 _______
+// #define L2A_12 _______
+// #define L2A_13 _______
+// #define L2A_14 _______
+
+// #define L2A_9 _______
+// #define L2A_10 _______
+
+// #define L2A_15 _______
+// #define L2A_16 _______
+// #define L2A_17 _______
+
+// #define L2A_18 _______
+// #define L2A_19 _______
+// #define L2A_20 _______
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -220,11 +286,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LOWER] = LAYOUT(
-     _______, _______, _______,   _______, _______,  _______,                  _______, _______, _______, _______, _______, QK_BOOT,
-     _______,  LCAG(KC_Q), LCAG(KC_W),  LCAG(KC_E), _______, _______,                  LALT(KC_7), LSFT(KC_3),   LSFT(KC_MINS),   LSFT(KC_1),   _______,   _______,
-     _______,  LCAG(KC_A), LCAG(KC_S),  LCAG(KC_D), COPY, PASTE,                  KC_NUHS, LSFT(KC_SLASH),   LSFT(KC_2),   BACKTICK,   LSFT(KC_NUHS), _______,
-     _______, LCAG(KC_Z), LCAG(KC_X),  LCAG(KC_C), _______, _______, _______,         _______, _______, ALGR(KC_RBRC),   LSFT(KC_5),   LSFT(KC_6),   _______, _______,
-                                    _______, _______, _______,               KC_ESC,  _______, _______
+     // _______, _______, _______,   _______, _______,  _______,                  _______, _______, _______, _______, _______, QK_BOOT,
+     // _______,  LCAG(KC_Q), LCAG(KC_W),  LCAG(KC_E), _______, _______,                  LALT(KC_7), LSFT(KC_3),   LSFT(KC_MINS),   LSFT(KC_1),   _______,   _______,
+     // _______,  LCAG(KC_A), LCAG(KC_S),  LCAG(KC_D), COPY, PASTE,                  KC_NUHS, LSFT(KC_SLASH),   LSFT(KC_2),   BACKTICK,   LSFT(KC_NUHS), _______,
+     // _______, LCAG(KC_Z), LCAG(KC_X),  LCAG(KC_C), _______, _______, _______,         _______, _______, ALGR(KC_RBRC),   LSFT(KC_5),   LSFT(KC_6),   _______, _______,
+     //                                _______, _______, _______,               KC_ESC,  _______, _______
+     //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+        L2A_1,     L2KC_1,    L2KC_2,    L2KC_3,    L2KC_4,    L2KC_5,                               L2KC_6,    L2KC_7,    L2KC_8,    L2KC_9,    L2KC_0,    L2A_2,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L2A_3,     L2KC_Q,    L2KC_W,    L2KC_E,    L2KC_R,    L2KC_T,                               L2KC_Y,    L2KC_U,    L2KC_I,    L2KC_O,    L2KC_P,    L2A_4,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L2A_5,     L2KC_A,    L2KC_S,    L2KC_D,    L2KC_F,    L2KC_G,                               L2KC_H,    L2KC_J,    L2KC_K,    L2KC_L,    L2A_6,     L2A_7,
+     //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L2A_8,     L2KC_Z,    L2KC_X,    L2KC_C,    L2KC_V,    L2KC_B,    L2A_9,             L2A_10, L2KC_N,    L2KC_M,    L2A_11,    L2A_12,    L2A_13,    L2A_14,
+     //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
+                                       L2A_15,  L2A_16,  L2A_17,                                   L2A_18,  L2A_19,   L2A_20
+                                   // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   ),
 
   [_RAISE] = LAYOUT(
