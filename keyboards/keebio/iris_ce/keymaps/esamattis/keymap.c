@@ -16,7 +16,6 @@ enum custom_layers {
      _LOWER,
      _RAISE,
      _MOUSE
-     _QWERTY2
 };
 
 enum custom_keycodes {
