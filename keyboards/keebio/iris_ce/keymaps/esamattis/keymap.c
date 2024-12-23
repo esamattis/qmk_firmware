@@ -65,9 +65,6 @@ bool caps_word_press_user(uint16_t keycode) {
 #define MT_C MT(MOD_LALT,KC_C)
 #define MT_V MT(MOD_LGUI,KC_V)
 
-#define MT_M MT(MOD_LGUI,KC_M)
-#define MT_KOMM MT(MOD_LALT,KC_COMM)
-#define MT_DOT MT(MOD_LCTL,KC_DOT)
 
 #define COPY LGUI(KC_C)
 #define PASTE LGUI(KC_V)
@@ -97,7 +94,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_I KC_I
 #define L1KC_O KC_O
 #define L1KC_P KC_P
-#define L1A_4 _______
+#define L1A_4 KC_BACKSPACE
 
 #define L1A_5 KC_TAB
 #define L1KC_A KC_A
@@ -114,26 +111,27 @@ bool caps_word_press_user(uint16_t keycode) {
 
 #define L1A_8  KC_LSFT
 #define L1KC_Z KC_Z
-#define L1KC_X KC_X
-#define L1KC_C KC_C
-#define L1KC_V KC_V
+#define L1KC_X MT(MOD_LCTL,KC_X)
+#define L1KC_C MT(MOD_LALT,KC_C)
+#define L1KC_V MT(MOD_LGUI,KC_V)
+
 #define L1KC_B KC_B
 #define L1KC_N KC_N
-#define L1KC_M KC_M
-#define L1A_11 _______
-#define L1A_12 _______
-#define L1A_13 _______
-#define L1A_14 _______
+#define L1KC_M MT(MOD_LGUI,KC_M)
+#define L1A_11 MT(MOD_LALT,KC_COMM)
+#define L1A_12 MT(MOD_LCTL,KC_DOT)
+#define L1A_13 KC_SLSH
+#define L1A_14 KC_RSFT
 
 #define L1A_9 _______
 #define L1A_10 _______
 
 #define L1A_15 _______
-#define L1A_16 _______
-#define L1A_17 _______
+#define L1A_16 MO(_LOWER)
+#define L1A_17 KC_ENT
 
-#define L1A_18 _______
-#define L1A_19 _______
+#define L1A_18 KC_SPACE
+#define L1A_19 MO(_RAISE)
 #define L1A_20 _______
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
