@@ -105,8 +105,8 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_J KC_J
 #define L1KC_K KC_K
 #define L1KC_L KC_L
-#define L1A_6 _______
-#define L1A_7 _______
+#define L1A_6 KC_SCLN
+#define L1A_7 KC_QUOT
 
 #define L1A_8  KC_LSFT
 #define L1KC_Z KC_Z
@@ -132,6 +132,71 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_18 KC_SPACE
 #define L1A_19 MO(_RAISE)
 #define L1A_20 _______
+
+// // Layer 1
+// #define L1A_1 _______
+// #define L1KC_1 KC_1
+// #define L1KC_2 KC_2
+// #define L1KC_3 KC_3
+// #define L1KC_4 KC_4
+// #define L1KC_5 KC_5
+// #define L1KC_6 KC_6
+// #define L1KC_7 KC_7
+// #define L1KC_8 KC_8
+// #define L1KC_9 KC_9
+// #define L1KC_0 KC_0
+// #define L1A_2 _______
+
+// #define L1A_3 MO(_MOUSE)
+// #define L1KC_Q KC_Q
+// #define L1KC_W KC_W
+// #define L1KC_E KC_E
+// #define L1KC_R KC_R
+// #define L1KC_T KC_T
+// #define L1KC_Y KC_Y
+// #define L1KC_U KC_U
+// #define L1KC_I KC_I
+// #define L1KC_O KC_O
+// #define L1KC_P KC_P
+// #define L1A_4 KC_BACKSPACE
+
+// #define L1A_5 KC_TAB
+// #define L1KC_A KC_A
+// #define L1KC_S KC_S
+// #define L1KC_D KC_D
+// #define L1KC_F KC_F
+// #define L1KC_G KC_G
+// #define L1KC_H KC_H
+// #define L1KC_J KC_J
+// #define L1KC_K KC_K
+// #define L1KC_L KC_L
+// #define L1A_6 _______
+// #define L1A_7 _______
+
+// #define L1A_8  KC_LSFT
+// #define L1KC_Z KC_Z
+// #define L1KC_X MT(MOD_LCTL,KC_X)
+// #define L1KC_C MT(MOD_LALT,KC_C)
+// #define L1KC_V MT(MOD_LGUI,KC_V)
+
+// #define L1KC_B KC_B
+// #define L1KC_N KC_N
+// #define L1KC_M MT(MOD_LGUI,KC_M)
+// #define L1A_11 MT(MOD_LALT,KC_COMM)
+// #define L1A_12 MT(MOD_LCTL,KC_DOT)
+// #define L1A_13 KC_SLSH
+// #define L1A_14 KC_RSFT
+
+// #define L1A_9 _______
+// #define L1A_10 _______
+
+// #define L1A_15 _______
+// #define L1A_16 MO(_LOWER)
+// #define L1A_17 KC_ENT
+
+// #define L1A_18 KC_SPACE
+// #define L1A_19 MO(_RAISE)
+// #define L1A_20 _______
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
