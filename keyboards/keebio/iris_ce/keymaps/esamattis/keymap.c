@@ -16,6 +16,7 @@ enum custom_layers {
      _LOWER,
      _RAISE,
      _MOUSE
+     _QWERTY2
 };
 
 enum custom_keycodes {
@@ -71,6 +72,69 @@ bool caps_word_press_user(uint16_t keycode) {
 #define COPY LGUI(KC_C)
 #define PASTE LGUI(KC_V)
 
+#define L1A_1 _______
+#define L1KC_1 KC_1
+#define L1KC_2 KC_2
+#define L1KC_3 KC_3
+#define L1KC_4 KC_4
+#define L1KC_5 KC_5
+#define L1KC_6 KC_6
+#define L1KC_7 KC_7
+#define L1KC_8 KC_8
+#define L1KC_9 KC_9
+#define L1KC_0 KC_0
+#define L1A_1 _______
+
+#define L1A_3 _______
+#define L1KC_Q KC_Q
+#define L1KC_W KC_W
+#define L1KC_E KC_E
+#define L1KC_R KC_R
+#define L1KC_T KC_T
+#define L1KC_Y KC_Y
+#define L1KC_U KC_U
+#define L1KC_I KC_I
+#define L1KC_O KC_O
+#define L1KC_P KC_P
+#define L1A_4 _______
+
+#define L1A_5 _______
+#define L1KC_A KC_A
+#define L1KC_S KC_S
+#define L1KC_D KC_D
+#define L1KC_F KC_F
+#define L1KC_G KC_G
+#define L1KC_H KC_H
+#define L1KC_J KC_J
+#define L1KC_K KC_K
+#define L1KC_L KC_L
+#define L1A_6 _______
+#define L1A_7 _______
+
+#define L1A_8 _______
+#define L1KC_Z KC_Z
+#define L1KC_X KC_X
+#define L1KC_C KC_C
+#define L1KC_V KC_V
+#define L1KC_B KC_B
+#define L1KC_N KC_N
+#define L1KC_M KC_M
+#define L1A_11 _______
+#define L1A_12 _______
+#define L1A_13 _______
+#define L1A_14 _______
+
+#define L1A_9 _______
+#define L1A_10 _______
+
+#define L1A_15 _______
+#define L1A_16 _______
+#define L1A_17 _______
+
+#define L1A_18 _______
+#define L1A_19 _______
+#define L1A_20 _______
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -103,5 +167,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______, _______, _______, _______,                  QK_MOUSE_WHEEL_RIGHT,  QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, QK_MOUSE_WHEEL_LEFT, _______,
      _______, _______, _______, _______, _______, _______, _______,          _______, QK_MOUSE_WHEEL_RIGHT, QK_MOUSE_WHEEL_UP,  QK_MOUSE_WHEEL_DOWN, QK_MOUSE_WHEEL_LEFT, _______, _______,
                                     _______, _______, _______,                   MS_BTN1, MS_BTN2, _______
+  ),
+
+
+  [_QWERTY2] = LAYOUT(
+  //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+     L1A_1,     L1KC_1,    L1KC_2,    L1KC_3,    L1KC_4,    L1KC_5,                               L1KC_6,    L1KC_7,    L1KC_8,    L1KC_9,    L1KC_0,    L1A_2,
+  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+     L1A_3,     L1KC_Q,    L1KC_W,    L1KC_E,    L1KC_R,    L1KC_T,                               L1KC_Y,    L1KC_U,    L1KC_I,    L1KC_O,    L1KC_P,    L1A_4,
+  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+     L1A_5,     L1KC_A,    L1KC_S,    L1KC_D,    L1KC_F,    L1KC_G,                               L1KC_H,    L1KC_J,    L1KC_K,    L1KC_L,    L1A_6,     L1A_7,
+  //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼─────────┐        ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+     L1A_8,     L1KC_Z,    L1KC_X,    L1KC_C,    L1KC_V,    L1KC_B,    L1A_9,             L1A_10, L1KC_N,    L1KC_M,    L1A_11,    L1A_12,    L1A_13,    L1A_14,
+  //└──────────┴──────────┴──────────┴──────┬───┴────┬──────┴───┬──────┴─────┬──┘        └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
+                                    L1A_15,  L1A_16,  L1A_17,                                   L1A_18,  L1A_19,   L1A_20
+                                // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   )
+
 };
