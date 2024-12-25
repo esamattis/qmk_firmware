@@ -22,10 +22,46 @@ enum custom_layers {
 enum custom_keycodes {
     QMKBEST = SAFE_RANGE,
     BACKTICK,
+    MY_CAPS,
+    MY_RBG
 };
 
+static uint8_t my_caps_lock = 0;
+static uint8_t my_caps_lock_now = 0;
+
+// void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     if (my_caps_lock_now) {
+//         unregister_code(KC_LSFT);
+//     }
+// }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (my_caps_lock) {
+        switch (keycode) {
+            case KC_SPC:
+                my_caps_lock = 0;
+                break;
+            case KC_A ... KC_Z:
+                if (record->event.pressed) {
+                    my_caps_lock_now = 1;
+                    register_code(KC_LSFT);
+                    tap_code(keycode);
+                    unregister_code(KC_LSFT);
+                    // if (get_mods() & MOD_BIT(KC_LSFT)) {
+                    //     unregister_code(KC_LSFT);
+                    // } else {
+                    // }
+                }
+                return false;
+        }
+    }
+
+
     switch (keycode) {
+    case MY_CAPS:
+        tap_code(KC_A);
+        my_caps_lock = 1;
+        return false;
     case BACKTICK:
         if (record->event.pressed) {
             register_code(KC_LSFT);
@@ -126,22 +162,22 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_9 _______
 #define L1A_10 _______
 
-#define L1A_15 TT(_NUMBERS)
+#define L1A_15 _______
 #define L1A_16 MO(_LOWER)
-#define L1A_17 KC_ENT
+#define L1A_17 LT(_NUMBERS, KC_ENT)
 
 #define L1A_18 KC_SPACE
 #define L1A_19 MO(_RAISE)
 #define L1A_20 _______
 
 // Layer 2
-#define L2A_1 _______
+#define L2A_1 MY_RBG
 #define L2KC_1 _______
 #define L2KC_2 _______
 #define L2KC_3 _______
 #define L2KC_4 _______
 #define L2KC_5 _______
-#define L2KC_6 _______
+#define L2KC_6 MY_CAPS
 #define L2KC_7 _______
 #define L2KC_8 _______
 #define L2KC_9 _______
@@ -238,8 +274,8 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L3KC_J KC_DOWN
 #define L3KC_K KC_UP
 #define L3KC_L KC_RGHT
-#define L3A_6 _______
-#define L3A_7 _______
+#define L3A_6 KC_HOME
+#define L3A_7 KC_END
 
 #define L3A_8  _______
 #define L3KC_Z _______
