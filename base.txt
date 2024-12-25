@@ -19,6 +19,7 @@
 // #define L2KC_E _______
 // #define L2KC_R _______
 // #define L2KC_T _______
+
 // #define L2KC_Y _______
 // #define L2KC_U _______
 // #define L2KC_I _______
@@ -32,6 +33,7 @@
 // #define L2KC_D _______
 // #define L2KC_F _______
 // #define L2KC_G _______
+
 // #define L2KC_H _______
 // #define L2KC_J _______
 // #define L2KC_K _______

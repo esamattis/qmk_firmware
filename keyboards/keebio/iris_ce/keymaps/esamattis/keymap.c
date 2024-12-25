@@ -15,7 +15,8 @@ enum custom_layers {
      _QWERTY,
      _LOWER,
      _RAISE,
-     _MOUSE
+     _MOUSE,
+     _NUMBERS
 };
 
 enum custom_keycodes {
@@ -125,7 +126,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_9 _______
 #define L1A_10 _______
 
-#define L1A_15 _______
+#define L1A_15 TT(_NUMBERS)
 #define L1A_16 MO(_LOWER)
 #define L1A_17 KC_ENT
 
@@ -265,6 +266,73 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L3A_19 _______
 #define L3A_20 _______
 
+// Layer 4
+#define L4A_1 _______
+#define L4KC_1 _______
+#define L4KC_2 _______
+#define L4KC_3 _______
+#define L4KC_4 _______
+#define L4KC_5 _______
+#define L4KC_6 _______
+#define L4KC_7 _______
+#define L4KC_8 _______
+#define L4KC_9 _______
+#define L4KC_0 _______
+#define L4A_2 _______
+
+#define L4A_3 _______
+#define L4KC_Q KC_1
+#define L4KC_W KC_2
+#define L4KC_E KC_3
+#define L4KC_R KC_4
+#define L4KC_T KC_5
+
+#define L4KC_Y KC_6
+#define L4KC_U KC_7
+#define L4KC_I KC_8
+#define L4KC_O KC_9
+#define L4KC_P KC_0
+#define L4A_4 _______
+
+#define L4A_5 _______
+#define L4KC_A _______
+#define L4KC_S _______
+#define L4KC_D _______
+#define L4KC_F TO(_QWERTY)
+#define L4KC_G _______
+
+#define L4KC_H _______
+#define L4KC_J _______
+#define L4KC_K _______
+#define L4KC_L _______
+#define L4A_6 _______
+#define L4A_7 _______
+
+#define L4A_8  _______
+#define L4KC_Z _______
+#define L4KC_X _______
+#define L4KC_C _______
+#define L4KC_V _______
+
+#define L4KC_B _______
+#define L4KC_N _______
+#define L4KC_M _______
+#define L4A_11 _______
+#define L4A_12 _______
+#define L4A_13 _______
+#define L4A_14 _______
+
+#define L4A_9 _______
+#define L4A_10 _______
+
+#define L4A_15 _______
+#define L4A_16 _______
+#define L4A_17 _______
+
+#define L4A_18 _______
+#define L4A_19 _______
+#define L4A_20 _______
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -330,6 +398,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______, _______, _______, _______, _______,                  QK_MOUSE_WHEEL_RIGHT,  QK_MOUSE_CURSOR_LEFT, QK_MOUSE_CURSOR_DOWN, QK_MOUSE_CURSOR_RIGHT, QK_MOUSE_WHEEL_LEFT, _______,
      _______, _______, _______, _______, _______, _______, _______,          _______, QK_MOUSE_WHEEL_RIGHT, QK_MOUSE_WHEEL_UP,  QK_MOUSE_WHEEL_DOWN, QK_MOUSE_WHEEL_LEFT, _______, _______,
                                     _______, _______, _______,                   MS_BTN1, MS_BTN2, _______
+  ),
+
+  [_NUMBERS] = LAYOUT(
+    //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+        L4A_1,     L4KC_1,    L4KC_2,    L4KC_3,    L4KC_4,    L4KC_5,                               L4KC_6,    L4KC_7,    L4KC_8,    L4KC_9,    L4KC_0,    L4A_2,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L4A_3,     L4KC_Q,    L4KC_W,    L4KC_E,    L4KC_R,    L4KC_T,                               L4KC_Y,    L4KC_U,    L4KC_I,    L4KC_O,    L4KC_P,    L4A_4,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L4A_5,     L4KC_A,    L4KC_S,    L4KC_D,    L4KC_F,    L4KC_G,                               L4KC_H,    L4KC_J,    L4KC_K,    L4KC_L,    L4A_6,     L4A_7,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L4A_8,     L4KC_Z,    L4KC_X,    L4KC_C,    L4KC_V,    L4KC_B,    L4A_9,             L4A_10, L4KC_N,    L4KC_M,    L4A_11,    L4A_12,    L4A_13,    L4A_14,
+    //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
+                                        L4A_15,  L4A_16,  L4A_17,                                   L4A_18,  L4A_19,   L4A_20
+                                    // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   )
 
 };
