@@ -145,7 +145,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L2KC_8 _______
 #define L2KC_9 _______
 #define L2KC_0 _______
-#define L2A_2 _______
+#define L2A_2 QK_BOOT
 
 #define L2A_3 _______
 #define L2KC_Q LCAG(KC_Q) // Rectagle, Left Control + Alt + GUI
@@ -181,9 +181,9 @@ bool caps_word_press_user(uint16_t keycode) {
 
 #define L2KC_B _______
 #define L2KC_N _______
-#define L2KC_M _______
-#define L2A_11 _______
-#define L2A_12 _______
+#define L2KC_M ALGR(KC_RBRC)
+#define L2A_11 LSFT(KC_5)
+#define L2A_12 LSFT(KC_6)
 #define L2A_13 _______
 #define L2A_14 _______
 
@@ -194,75 +194,76 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L2A_16 _______
 #define L2A_17 _______
 
-#define L2A_18 _______
+#define L2A_18 KC_ESC
 #define L2A_19 _______
 #define L2A_20 _______
 
-// // Layer 2
-// #define L2A_1 _______
-// #define L2KC_1 _______
-// #define L2KC_2 _______
-// #define L2KC_3 _______
-// #define L2KC_4 _______
-// #define L2KC_5 _______
-// #define L2KC_6 _______
-// #define L2KC_7 _______
-// #define L2KC_8 _______
-// #define L2KC_9 _______
-// #define L2KC_0 _______
-// #define L2A_2 _______
+// Layer 2
+#define L3A_1 _______
+#define L3KC_1 _______
+#define L3KC_2 _______
+#define L3KC_3 LALT(KC_8) // [
+#define L3KC_4 LALT(KC_9) // ]
+#define L3KC_5 _______
+#define L3KC_6 _______
+#define L3KC_7 _______
+#define L3KC_8 _______
+#define L3KC_9 _______
+#define L3KC_0 _______
+#define L3A_2 _______
 
-// #define L2A_3 _______
-// #define L2KC_Q _______
-// #define L2KC_W _______
-// #define L2KC_E _______
-// #define L2KC_R _______
-// #define L2KC_T _______
-// #define L2KC_Y _______
-// #define L2KC_U _______
-// #define L2KC_I _______
-// #define L2KC_O _______
-// #define L2KC_P _______
-// #define L2A_4 _______
+#define L3A_3 _______
+#define L3KC_Q _______
+#define L3KC_W _______
+#define L3KC_E RSFT(KC_8) // (
+#define L3KC_R RSFT(KC_9) // )
+#define L3KC_T LSFT(LALT(KC_7)) // Backslash
 
-// #define L2A_5 _______
-// #define L2KC_A _______
-// #define L2KC_S _______
-// #define L2KC_D _______
-// #define L2KC_F _______
-// #define L2KC_G _______
-// #define L2KC_H _______
-// #define L2KC_J _______
-// #define L2KC_K _______
-// #define L2KC_L _______
-// #define L2A_6 _______
-// #define L2A_7 _______
+#define L3KC_Y _______
+#define L3KC_U _______
+#define L3KC_I _______
+#define L3KC_O _______
+#define L3KC_P _______
+#define L3A_4 _______
 
-// #define L2A_8  _______
-// #define L2KC_Z _______
-// #define L2KC_X _______
-// #define L2KC_C _______
-// #define L2KC_V _______
+#define L3A_5 _______
+#define L3KC_A LALT(KC_2)
+#define L3KC_S _______
+#define L3KC_D LSA(KC_8) // {
+#define L3KC_F LSA(KC_9) // }
+#define L3KC_G LSFT(KC_7) // /
 
-// #define L2KC_B _______
-// #define L2KC_N _______
-// #define L2KC_M _______
-// #define L2A_11 _______
-// #define L2A_12 _______
-// #define L2A_13 _______
-// #define L2A_14 _______
+#define L3KC_H KC_LEFT
+#define L3KC_J KC_DOWN
+#define L3KC_K KC_UP
+#define L3KC_L KC_RGHT
+#define L3A_6 _______
+#define L3A_7 _______
 
-// #define L2A_9 _______
-// #define L2A_10 _______
+#define L3A_8  _______
+#define L3KC_Z _______
+#define L3KC_X _______
+#define L3KC_C KC_GRV  // <
+#define L3KC_V RSFT(KC_GRV)  // >
+#define L3KC_B LSFT(KC_0) // =
 
-// #define L2A_15 _______
-// #define L2A_16 _______
-// #define L2A_17 _______
+#define L3KC_N _______
+#define L3KC_M _______
+#define L3A_11 _______
+#define L3A_12 _______
+#define L3A_13 _______
+#define L3A_14 _______
 
-// #define L2A_18 _______
-// #define L2A_19 _______
-// #define L2A_20 _______
+#define L3A_9 _______
+#define L3A_10 _______
 
+#define L3A_15 _______
+#define L3A_16 _______
+#define L3A_17 _______
+
+#define L3A_18 _______
+#define L3A_19 _______
+#define L3A_20 _______
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -305,11 +306,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RAISE] = LAYOUT(
-     _______,  _______,   _______,   LALT(KC_8), LALT(KC_9)  ,   _______,         _______,   _______,   _______,   _______,   _______,  _______,
-     _______, _______, _______,   RSFT(KC_8), RSFT(KC_9),  LSFT(LALT(KC_7))/* \ */,               _______, _______,     _______,  _______, _______, _______,
-     _______, LALT(KC_2), _______, LSA(KC_8)/* { */, LSA(KC_9)/* } */, LSFT(KC_7)/* / */,                  KC_LEFT,  KC_DOWN, KC_UP, KC_RGHT, KC_HOME, KC_END,
-     _______, _______, _______, KC_GRV, RSFT(KC_GRV), LSFT(KC_0), _______,          _______, _______, _______,  _______, _______, _______, _______,
-                                    _______, _______, _______,                   _______, _______, _______
+     // _______,  _______,   _______,   LALT(KC_8), LALT(KC_9)  ,   _______,         _______,   _______,   _______,   _______,   _______,  _______,
+     // _______, _______, _______,   RSFT(KC_8), RSFT(KC_9),  LSFT(LALT(KC_7))/* \ */,               _______, _______,     _______,  _______, _______, _______,
+     // _______, LALT(KC_2), _______, LSA(KC_8)/* { */, LSA(KC_9)/* } */, LSFT(KC_7)/* / */,                  KC_LEFT,  KC_DOWN, KC_UP, KC_RGHT, KC_HOME, KC_END,
+     // _______, _______, _______, KC_GRV, RSFT(KC_GRV), LSFT(KC_0), _______,          _______, _______, _______,  _______, _______, _______, _______,
+     //                                _______, _______, _______,                   _______, _______, _______
+    //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                          ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+        L3A_1,     L3KC_1,    L3KC_2,    L3KC_3,    L3KC_4,    L3KC_5,                               L3KC_6,    L3KC_7,    L3KC_8,    L3KC_9,    L3KC_0,    L3A_2,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L3A_3,     L3KC_Q,    L3KC_W,    L3KC_E,    L3KC_R,    L3KC_T,                               L3KC_Y,    L3KC_U,    L3KC_I,    L3KC_O,    L3KC_P,    L3A_4,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                          ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L3A_5,     L3KC_A,    L3KC_S,    L3KC_D,    L3KC_F,    L3KC_G,                               L3KC_H,    L3KC_J,    L3KC_K,    L3KC_L,    L3A_6,     L3A_7,
+    //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+        L3A_8,     L3KC_Z,    L3KC_X,    L3KC_C,    L3KC_V,    L3KC_B,    L3A_9,             L3A_10, L3KC_N,    L3KC_M,    L3A_11,    L3A_12,    L3A_13,    L3A_14,
+    //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
+                                        L3A_15,  L3A_16,  L3A_17,                                   L3A_18,  L3A_19,   L3A_20
+                                    // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   ),
 
   [_MOUSE] = LAYOUT(

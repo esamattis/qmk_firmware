@@ -1,0 +1,65 @@
+
+// // Layer 2
+// #define L2A_1 _______
+// #define L2KC_1 _______
+// #define L2KC_2 _______
+// #define L2KC_3 _______
+// #define L2KC_4 _______
+// #define L2KC_5 _______
+// #define L2KC_6 _______
+// #define L2KC_7 _______
+// #define L2KC_8 _______
+// #define L2KC_9 _______
+// #define L2KC_0 _______
+// #define L2A_2 _______
+
+// #define L2A_3 _______
+// #define L2KC_Q _______
+// #define L2KC_W _______
+// #define L2KC_E _______
+// #define L2KC_R _______
+// #define L2KC_T _______
+// #define L2KC_Y _______
+// #define L2KC_U _______
+// #define L2KC_I _______
+// #define L2KC_O _______
+// #define L2KC_P _______
+// #define L2A_4 _______
+
+// #define L2A_5 _______
+// #define L2KC_A _______
+// #define L2KC_S _______
+// #define L2KC_D _______
+// #define L2KC_F _______
+// #define L2KC_G _______
+// #define L2KC_H _______
+// #define L2KC_J _______
+// #define L2KC_K _______
+// #define L2KC_L _______
+// #define L2A_6 _______
+// #define L2A_7 _______
+
+// #define L2A_8  _______
+// #define L2KC_Z _______
+// #define L2KC_X _______
+// #define L2KC_C _______
+// #define L2KC_V _______
+
+// #define L2KC_B _______
+// #define L2KC_N _______
+// #define L2KC_M _______
+// #define L2A_11 _______
+// #define L2A_12 _______
+// #define L2A_13 _______
+// #define L2A_14 _______
+
+// #define L2A_9 _______
+// #define L2A_10 _______
+
+// #define L2A_15 _______
+// #define L2A_16 _______
+// #define L2A_17 _______
+
+// #define L2A_18 _______
+// #define L2A_19 _______
+// #define L2A_20 _______
