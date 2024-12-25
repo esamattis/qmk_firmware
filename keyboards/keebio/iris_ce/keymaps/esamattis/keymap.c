@@ -26,8 +26,9 @@ enum custom_keycodes {
     MY_RBG
 };
 
-static uint8_t my_caps_lock = 0;
-static uint8_t my_caps_lock_now = 0;
+static bool my_caps = false;
+static bool my_caps_shift = false;
+static uint16_t my_caps_timer = 0;
 
 // void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
 //     if (my_caps_lock_now) {
@@ -35,32 +36,92 @@ static uint8_t my_caps_lock_now = 0;
 //     }
 // }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (my_caps_lock) {
+bool my_caps_handler(uint16_t keycode, keyrecord_t *record) {
+    if (!my_caps) {
         switch (keycode) {
-            case KC_SPC:
-                my_caps_lock = 0;
-                break;
-            case KC_A ... KC_Z:
-                if (record->event.pressed) {
-                    my_caps_lock_now = 1;
-                    register_code(KC_LSFT);
-                    tap_code(keycode);
-                    unregister_code(KC_LSFT);
-                    // if (get_mods() & MOD_BIT(KC_LSFT)) {
-                    //     unregister_code(KC_LSFT);
-                    // } else {
-                    // }
+        case KC_LSFT:
+        case KC_RSFT:
+            if (record->event.pressed) {
+                if (my_caps_timer == 0) {
+                    my_caps_timer = timer_read();
+                    return true;
+                } else if (timer_elapsed(my_caps_timer) < 200) {
+                    my_caps = true;
+                    my_caps_timer = 0;
+                    return false;
                 }
-                return false;
+            }
         }
+
+        my_caps_timer = 0;
+        return true;
     }
 
+    switch (keycode) {
+    case KC_LSFT:
+    case KC_RSFT:
+        if (record->event.pressed) {
+            my_caps_shift = true;
+        } else {
+            my_caps_shift = false;
+        }
+        return true;
+    // case KC_5:
+    //     if (my_caps_shift && record->event.pressed) {
+    //         break;
+    //     }
+    case KC_SLASH:
+        // Allow underscore with shift
+        if (my_caps_shift) {
+            return true;
+        }
+        break;
+    case KC_1 ... KC_0:
+        // Allow typing numbers
+        if (!my_caps_shift) {
+            return true;
+        }
+        // Do not shift numbers but exit caps mode
+        break;
+
+    case MO(_NUMBERS):
+    case MO(_MOUSE):
+    case MO(_LOWER):
+    case MO(_RAISE):
+    // Must allow underscore here too to make work from another layer
+    case LSFT(KC_SLASH):
+        return true;
+
+    case KC_SCLN: // ö
+    case KC_QUOT: // ä
+    case KC_A ... KC_Z:
+        if (record->event.pressed) {
+            register_code(KC_LSFT);
+            tap_code(keycode);
+            unregister_code(KC_LSFT);
+            // if (get_mods() & MOD_BIT(KC_LSFT)) {
+            //     unregister_code(KC_LSFT);
+            // } else {
+            // }
+        }
+        return false;
+    }
+
+    // Exit caps mode
+    if (record->event.pressed) {
+        my_caps = false;
+    }
+    return true;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!my_caps_handler(keycode, record)) {
+        return false;
+    }
 
     switch (keycode) {
     case MY_CAPS:
-        tap_code(KC_A);
-        my_caps_lock = 1;
+        my_caps = true;
         return false;
     case BACKTICK:
         if (record->event.pressed) {
@@ -142,10 +203,11 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_J KC_J
 #define L1KC_K KC_K
 #define L1KC_L KC_L
-#define L1A_6 KC_SCLN
-#define L1A_7 KC_QUOT
+#define L1A_6 KC_SCLN // ö
+#define L1A_7 KC_QUOT // ä
 
 #define L1A_8  KC_LSFT
+// #define L1A_8  MT(KC_LSFT, MY_CAPS)
 #define L1KC_Z KC_Z
 #define L1KC_X MT(MOD_LCTL,KC_X)
 #define L1KC_C MT(MOD_LALT,KC_C)
@@ -154,9 +216,9 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1KC_B KC_B
 #define L1KC_N KC_N
 #define L1KC_M MT(MOD_LGUI,KC_M)
-#define L1A_11 MT(MOD_LALT,KC_COMM)
-#define L1A_12 MT(MOD_LCTL,KC_DOT)
-#define L1A_13 KC_SLSH
+#define L1A_11 MT(MOD_LALT,KC_COMM) // Comma ,
+#define L1A_12 MT(MOD_LCTL,KC_DOT) // Period .
+#define L1A_13 KC_SLSH // Dash or hyphen -
 #define L1A_14 KC_RSFT
 
 #define L1A_9 _______
