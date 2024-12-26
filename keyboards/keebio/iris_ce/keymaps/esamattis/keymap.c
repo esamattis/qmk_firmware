@@ -23,118 +23,49 @@ enum custom_layers {
 enum custom_keycodes {
     QMKBEST = SAFE_RANGE,
     BACKTICK,
-    MY_CAPS,
     MY_RBG
 };
 
+void caps_word_set_user(bool active) {
+    if (active) {
+        rgb_matrix_sethsv(0, 255, 255);
+    } else {
+        rgb_matrix_sethsv(170, 255, 255);
+    }
+}
 
 
-// static bool my_caps = false;
-// // static bool my_caps_shift = false;
-// static uint16_t my_caps_timer = 0;
+bool caps_word_press_user(uint16_t keycode) {
+    #ifdef CONSOLE_ENABLE
+        uprintf("WORD CAPS KL: kc: 0x%04X\n", keycode);
+    #endif
 
-// void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     if (my_caps) {
-//         switch (keycode) {
-//         case KC_ENT:
-//             my_caps = false;
-//             break;
-//         }
-//     }
-// }
-
-// bool my_caps_handler(uint16_t keycode, keyrecord_t *record) {
-//     if (!my_caps) {
-//         switch (keycode) {
-//         case KC_LSFT:
-//         case KC_RSFT:
-//             if (record->event.pressed) {
-//                 if (my_caps_timer == 0) {
-//                     my_caps_timer = timer_read();
-//                     return true;
-//                 } else if (timer_elapsed(my_caps_timer) < TAPPING_TERM) {
-//                     my_caps = true;
-//                     my_caps_timer = 0;
-//                     return false;
-//                 }
-//             } else {
-//                 return true;
-//             }
-//         }
-
-//         my_caps_timer = 0;
-//         return true;
-//     }
-
-//     bool is_shifted = get_mods() & MOD_MASK_SHIFT;
-
-//     switch (keycode) {
-//     case KC_LSFT:
-//     // case KC_RSFT:
-//     //     if (record->event.pressed) {
-//     //         my_caps_shift = true;
-//     //     } else {
-//     //         my_caps_shift = false;
-//     //     }
-//     //     return true;
-//     // case KC_5:
-//     //     if (my_caps_shift && record->event.pressed) {
-//     //         break;
-//     //     }
-//     case KC_SLASH:
-//         // Allow underscore with shift
-//         if (is_shifted) {
-//             return true;
-//         }
-//         break;
-//     case KC_1 ... KC_0:
-//         // Allow typing numbers
-//         if (!is_shifted) {
-//             return true;
-//         }
-//         // Do not shift numbers but exit caps mode
-//         break;
-
-//     case LT(_NUMBERS, KC_ENT):
-//     case MO(_NUMBERS):
-//     case MO(_MOUSE):
-//     case MO(_LOWER):
-//     case MO(_RAISE):
-//     // Must allow underscore here too to make work from another layer
-//     case LSFT(KC_SLASH):
-//         return true;
-
-//     case KC_SCLN: // ö
-//     case KC_QUOT: // ä
-//     case KC_A ... KC_Z:
-//         if (record->event.pressed) {
-//             register_code(KC_LSFT);
-//             tap_code(keycode);
-//             unregister_code(KC_LSFT);
-//             // if (get_mods() & MOD_BIT(KC_LSFT)) {
-//             //     unregister_code(KC_LSFT);
-//             // } else {
-//             // }
-//         }
-//         return false;
-//     }
-
-//     // Exit caps mode
-//     if (record->event.pressed) {
-//         my_caps = false;
-//     }
-//     return true;
-// }
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // if (!my_caps_handler(keycode, record)) {
-    //     return false;
-    // }
 
     switch (keycode) {
-    // case MY_CAPS:
-    //     my_caps = true;
-    //     return false;
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_SCLN: // ö
+        case KC_QUOT: // ä
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_SLASH:
+        case KC_LSFT:
+        case KC_RSFT:
+        case KC_BSPC:
+        case KC_DEL:
+        case 0x0238: // Underscore from MO(_LOWER)
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
     case BACKTICK:
         if (record->event.pressed) {
             register_code(KC_LSFT);
@@ -147,28 +78,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 };
-
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-        case KC_LSFT:
-        case KC_RSFT:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
 
 #define MT_X MT(MOD_LCTL,KC_X)
 #define MT_C MT(MOD_LALT,KC_C)
@@ -219,7 +128,6 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L1A_7 KC_QUOT // ä
 
 #define L1A_8  KC_LSFT
-// #define L1A_8  MT(KC_LSFT, MY_CAPS)
 #define L1KC_Z KC_Z
 #define L1KC_X MT(MOD_LCTL,KC_X)
 #define L1KC_C MT(MOD_LALT,KC_C)
@@ -251,7 +159,7 @@ bool caps_word_press_user(uint16_t keycode) {
 #define L2KC_3 _______
 #define L2KC_4 _______
 #define L2KC_5 _______
-#define L2KC_6 MY_CAPS
+#define L2KC_6 _______
 #define L2KC_7 _______
 #define L2KC_8 _______
 #define L2KC_9 _______
