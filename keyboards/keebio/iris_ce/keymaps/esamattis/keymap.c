@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "action.h"
+#include "config.h"
 #include "keycodes.h"
 #include "keymap_us.h"
 #include "quantum_keycodes.h"
@@ -26,103 +27,114 @@ enum custom_keycodes {
     MY_RBG
 };
 
-static bool my_caps = false;
-static bool my_caps_shift = false;
-static uint16_t my_caps_timer = 0;
+
+
+// static bool my_caps = false;
+// // static bool my_caps_shift = false;
+// static uint16_t my_caps_timer = 0;
 
 // void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     if (my_caps_lock_now) {
-//         unregister_code(KC_LSFT);
+//     if (my_caps) {
+//         switch (keycode) {
+//         case KC_ENT:
+//             my_caps = false;
+//             break;
+//         }
 //     }
 // }
 
-bool my_caps_handler(uint16_t keycode, keyrecord_t *record) {
-    if (!my_caps) {
-        switch (keycode) {
-        case KC_LSFT:
-        case KC_RSFT:
-            if (record->event.pressed) {
-                if (my_caps_timer == 0) {
-                    my_caps_timer = timer_read();
-                    return true;
-                } else if (timer_elapsed(my_caps_timer) < 200) {
-                    my_caps = true;
-                    my_caps_timer = 0;
-                    return false;
-                }
-            }
-        }
+// bool my_caps_handler(uint16_t keycode, keyrecord_t *record) {
+//     if (!my_caps) {
+//         switch (keycode) {
+//         case KC_LSFT:
+//         case KC_RSFT:
+//             if (record->event.pressed) {
+//                 if (my_caps_timer == 0) {
+//                     my_caps_timer = timer_read();
+//                     return true;
+//                 } else if (timer_elapsed(my_caps_timer) < TAPPING_TERM) {
+//                     my_caps = true;
+//                     my_caps_timer = 0;
+//                     return false;
+//                 }
+//             } else {
+//                 return true;
+//             }
+//         }
 
-        my_caps_timer = 0;
-        return true;
-    }
+//         my_caps_timer = 0;
+//         return true;
+//     }
 
-    switch (keycode) {
-    case KC_LSFT:
-    case KC_RSFT:
-        if (record->event.pressed) {
-            my_caps_shift = true;
-        } else {
-            my_caps_shift = false;
-        }
-        return true;
-    // case KC_5:
-    //     if (my_caps_shift && record->event.pressed) {
-    //         break;
-    //     }
-    case KC_SLASH:
-        // Allow underscore with shift
-        if (my_caps_shift) {
-            return true;
-        }
-        break;
-    case KC_1 ... KC_0:
-        // Allow typing numbers
-        if (!my_caps_shift) {
-            return true;
-        }
-        // Do not shift numbers but exit caps mode
-        break;
+//     bool is_shifted = get_mods() & MOD_MASK_SHIFT;
 
-    case MO(_NUMBERS):
-    case MO(_MOUSE):
-    case MO(_LOWER):
-    case MO(_RAISE):
-    // Must allow underscore here too to make work from another layer
-    case LSFT(KC_SLASH):
-        return true;
+//     switch (keycode) {
+//     case KC_LSFT:
+//     // case KC_RSFT:
+//     //     if (record->event.pressed) {
+//     //         my_caps_shift = true;
+//     //     } else {
+//     //         my_caps_shift = false;
+//     //     }
+//     //     return true;
+//     // case KC_5:
+//     //     if (my_caps_shift && record->event.pressed) {
+//     //         break;
+//     //     }
+//     case KC_SLASH:
+//         // Allow underscore with shift
+//         if (is_shifted) {
+//             return true;
+//         }
+//         break;
+//     case KC_1 ... KC_0:
+//         // Allow typing numbers
+//         if (!is_shifted) {
+//             return true;
+//         }
+//         // Do not shift numbers but exit caps mode
+//         break;
 
-    case KC_SCLN: // ö
-    case KC_QUOT: // ä
-    case KC_A ... KC_Z:
-        if (record->event.pressed) {
-            register_code(KC_LSFT);
-            tap_code(keycode);
-            unregister_code(KC_LSFT);
-            // if (get_mods() & MOD_BIT(KC_LSFT)) {
-            //     unregister_code(KC_LSFT);
-            // } else {
-            // }
-        }
-        return false;
-    }
+//     case LT(_NUMBERS, KC_ENT):
+//     case MO(_NUMBERS):
+//     case MO(_MOUSE):
+//     case MO(_LOWER):
+//     case MO(_RAISE):
+//     // Must allow underscore here too to make work from another layer
+//     case LSFT(KC_SLASH):
+//         return true;
 
-    // Exit caps mode
-    if (record->event.pressed) {
-        my_caps = false;
-    }
-    return true;
-}
+//     case KC_SCLN: // ö
+//     case KC_QUOT: // ä
+//     case KC_A ... KC_Z:
+//         if (record->event.pressed) {
+//             register_code(KC_LSFT);
+//             tap_code(keycode);
+//             unregister_code(KC_LSFT);
+//             // if (get_mods() & MOD_BIT(KC_LSFT)) {
+//             //     unregister_code(KC_LSFT);
+//             // } else {
+//             // }
+//         }
+//         return false;
+//     }
+
+//     // Exit caps mode
+//     if (record->event.pressed) {
+//         my_caps = false;
+//     }
+//     return true;
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!my_caps_handler(keycode, record)) {
-        return false;
-    }
+    // if (!my_caps_handler(keycode, record)) {
+    //     return false;
+    // }
 
     switch (keycode) {
-    case MY_CAPS:
-        my_caps = true;
-        return false;
+    // case MY_CAPS:
+    //     my_caps = true;
+    //     return false;
     case BACKTICK:
         if (record->event.pressed) {
             register_code(KC_LSFT);
