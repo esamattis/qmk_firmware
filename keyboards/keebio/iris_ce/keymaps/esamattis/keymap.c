@@ -7,6 +7,7 @@
 #include "keymap_us.h"
 #include "quantum_keycodes.h"
 #include "report.h"
+#include "rgb_matrix.h"
 #include "send_string_keycodes.h"
 #include QMK_KEYBOARD_H
 
@@ -28,10 +29,14 @@ enum custom_keycodes {
 
 void caps_word_set_user(bool active) {
     if (active) {
-        rgb_matrix_sethsv(0, 255, 255);
+        rgb_matrix_sethsv_noeeprom(200, 255, 255);
     } else {
-        rgb_matrix_sethsv(170, 255, 255);
+        rgb_matrix_sethsv_noeeprom(170, 255, 255);
     }
+}
+
+void keyboard_post_init_user(void) {
+    rgb_matrix_sethsv_noeeprom(170, 255, 255);
 }
 
 
