@@ -207,10 +207,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define L2KC_B _______
 #define L2KC_N _______
-#define L2KC_M ALGR(KC_RBRC)
-#define L2A_11 LSFT(KC_5)
-#define L2A_12 LSFT(KC_6)
-#define L2A_13 KC_MINS
+#define L2KC_M ALGR(KC_RBRC) // ~
+#define L2A_11 LSFT(KC_5) // Percent %
+#define L2A_12 LSFT(KC_6) // Ampersand &
+#define L2A_13 KC_MINS // +
 #define L2A_14 _______
 
 #define L2A_9 _______
