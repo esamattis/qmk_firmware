@@ -112,6 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1KC_E KC_E
 #define L1KC_R KC_R
 #define L1KC_T KC_T
+
 #define L1KC_Y KC_Y
 #define L1KC_U KC_U
 #define L1KC_I KC_I
@@ -125,6 +126,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1KC_D KC_D
 #define L1KC_F KC_F
 #define L1KC_G KC_G
+
 #define L1KC_H KC_H
 #define L1KC_J KC_J
 #define L1KC_K KC_K
@@ -149,7 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_9 _______
 #define L1A_10 _______
 
-#define L1A_15 _______
+#define L1A_15 KC_HYPR
 #define L1A_16 MO(_LOWER)
 #define L1A_17 LT(_NUMBERS, KC_ENT)
 
@@ -208,7 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_M ALGR(KC_RBRC)
 #define L2A_11 LSFT(KC_5)
 #define L2A_12 LSFT(KC_6)
-#define L2A_13 _______
+#define L2A_13 KC_MINS
 #define L2A_14 _______
 
 #define L2A_9 _______
@@ -373,7 +375,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┐         ┌───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
         L1A_8,     L1KC_Z,    L1KC_X,    L1KC_C,    L1KC_V,    L1KC_B,    L1A_9,             L1A_10, L1KC_N,    L1KC_M,    L1A_11,    L1A_12,    L1A_13,    L1A_14,
      //└──────────┴──────────┴──────────┴──────┬───┴────┬─────┴───┬──────┴─────┬──┘         └────┬──┴─────┬────┴───┬──────┴───┬──────┴──────────┴──────────┴────────┘
-                                       L1A_15,  L1A_16,  L1A_17,                                   L1A_18,  L1A_19,   L1A_20
+                                        L1A_15,  L1A_16,  L1A_17,                                  L1A_18,  L1A_19,   L1A_20
                                    // └────────┴────────┴────  ────┘                             └────────┴────────┴──────────┘
   ),
 
