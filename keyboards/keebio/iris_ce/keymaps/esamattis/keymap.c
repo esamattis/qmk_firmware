@@ -70,7 +70,19 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
     switch (keycode) {
+    case KC_Q:
+        if (record->event.pressed) {
+            // Hyper + Q does not work for Rectangle shortcut for some reason.
+            // So convert it to LCTL + LALT + LGUI + 0
+            bool is_hyper = get_mods() & MOD_BIT(KC_LCTL) && get_mods() & MOD_BIT(KC_LALT) && get_mods() & MOD_BIT(KC_LSFT) && get_mods() & MOD_BIT(KC_LGUI);
+            if (is_hyper) {
+                tap_code(KC_0);
+                return false;
+            }
+        }
+        break;
     case BACKTICK:
         if (record->event.pressed) {
             register_code(KC_LSFT);
