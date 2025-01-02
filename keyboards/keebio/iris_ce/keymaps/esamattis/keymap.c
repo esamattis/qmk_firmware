@@ -186,9 +186,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_2 QK_BOOT
 
 #define L2A_3 _______
-#define L2KC_Q LCAG(KC_Q) // Rectagle, Left Control + Alt + GUI
-#define L2KC_W LCAG(KC_W) // ...
-#define L2KC_E LCAG(KC_E) // ...
+#define L2KC_Q _______
+#define L2KC_W _______
+#define L2KC_E LSFT(KC_4) // €
 #define L2KC_R _______
 #define L2KC_T _______
 #define L2KC_Y LALT(KC_7) // Pipe |
@@ -199,11 +199,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_4 _______
 
 #define L2A_5 _______
-#define L2KC_A LCAG(KC_A) // Rectagle, Left Control + Alt + GUI
-#define L2KC_S LCAG(KC_S) // ...
-#define L2KC_D LCAG(KC_D) // ...
-#define L2KC_F LGUI(KC_C)
-#define L2KC_G LGUI(KC_V)
+#define L2KC_A LALT(KC_2) // At sign @
+#define L2KC_S _______
+#define L2KC_D _______
+#define L2KC_F _______
+#define L2KC_G _______
 #define L2KC_H KC_NUHS // Single quote '
 #define L2KC_J LSFT(KC_SLASH) // Underscore _
 #define L2KC_K LSFT(KC_2) // Double quote "
@@ -212,9 +212,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_7 _______
 
 #define L2A_8  _______
-#define L2KC_Z LCAG(KC_Z) // Rectagle, Left Control + Alt + GUI
-#define L2KC_X LCAG(KC_X) // ...
-#define L2KC_C LCAG(KC_C) // ...
+#define L2KC_Z _______
+#define L2KC_X _______
+#define L2KC_C _______
 #define L2KC_V _______
 
 #define L2KC_B _______
@@ -240,8 +240,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3A_1 _______
 #define L3KC_1 _______
 #define L3KC_2 _______
-#define L3KC_3 LALT(KC_8) // [
-#define L3KC_4 LALT(KC_9) // ]
+#define L3KC_3 _______
+#define L3KC_4 _______
 #define L3KC_5 _______
 #define L3KC_6 _______
 #define L3KC_7 _______
@@ -265,8 +265,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3A_4 _______
 
 #define L3A_5 _______
-#define L3KC_A LALT(KC_2)
-#define L3KC_S _______
+#define L3KC_A LALT(KC_8) // [
+#define L3KC_S LALT(KC_9) // ]
 #define L3KC_D LSA(KC_8) // {
 #define L3KC_F LSA(KC_9) // }
 #define L3KC_G LSFT(KC_7) // /
