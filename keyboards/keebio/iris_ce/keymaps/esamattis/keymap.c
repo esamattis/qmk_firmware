@@ -146,7 +146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_6 KC_SCLN // ö
 #define L1A_7 KC_QUOT // ä
 
-#define L1A_8  KC_LSFT
+#define L1A_8  KC_NO
 #define L1KC_Z KC_Z
 #define L1KC_X MT(MOD_LCTL,KC_X)
 #define L1KC_C MT(MOD_LALT,KC_C)
@@ -158,7 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_11 MT(MOD_LALT,KC_COMM) // Comma ,
 #define L1A_12 MT(MOD_LCTL,KC_DOT) // Period .
 #define L1A_13 KC_SLSH // Dash or hyphen -
-#define L1A_14 KC_RSFT
+#define L1A_14 KC_NO
 
 #define L1A_9 _______
 #define L1A_10 _______
@@ -317,19 +317,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4KC_0 _______
 #define L4A_2 _______
 
-#define L4A_3 _______
-#define L4KC_Q _______
-#define L4KC_W _______
-#define L4KC_E _______
-#define L4KC_R _______
-#define L4KC_T _______
+#define L4A_3 KC_F1
+#define L4KC_Q KC_F2
+#define L4KC_W KC_F3
+#define L4KC_E KC_F4
+#define L4KC_R KC_F5
+#define L4KC_T KC_F6
 
-#define L4KC_Y _______
-#define L4KC_U _______
-#define L4KC_I _______
-#define L4KC_O _______
-#define L4KC_P _______
-#define L4A_4 _______
+#define L4KC_Y KC_F7
+#define L4KC_U KC_F8
+#define L4KC_I KC_F9
+#define L4KC_O KC_F10
+#define L4KC_P KC_F11
+#define L4A_4 KC_F12
 
 #define L4A_5 _______
 #define L4KC_A KC_1
