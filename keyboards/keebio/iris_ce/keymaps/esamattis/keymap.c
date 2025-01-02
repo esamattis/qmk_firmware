@@ -165,11 +165,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define L1A_15 KC_HYPR
 #define L1A_16 MO(_LOWER)
-#define L1A_17 LT(_NUMBERS, KC_ENT)
+#define L1A_17 KC_LSFT
 
-#define L1A_18 KC_SPACE
+#define L1A_18 LT(_NUMBERS, KC_SPACE)
 #define L1A_19 MO(_RAISE)
-#define L1A_20 _______
+#define L1A_20 KC_ENT
 
 // Layer 2
 #define L2A_1 MY_RBG
@@ -318,31 +318,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4A_2 _______
 
 #define L4A_3 _______
-#define L4KC_Q KC_1
-#define L4KC_W KC_2
-#define L4KC_E KC_3
-#define L4KC_R KC_4
-#define L4KC_T KC_5
+#define L4KC_Q _______
+#define L4KC_W _______
+#define L4KC_E _______
+#define L4KC_R _______
+#define L4KC_T _______
 
-#define L4KC_Y KC_6
-#define L4KC_U KC_7
-#define L4KC_I KC_8
-#define L4KC_O KC_9
-#define L4KC_P KC_0
+#define L4KC_Y _______
+#define L4KC_U _______
+#define L4KC_I _______
+#define L4KC_O _______
+#define L4KC_P _______
 #define L4A_4 _______
 
 #define L4A_5 _______
-#define L4KC_A _______
-#define L4KC_S _______
-#define L4KC_D _______
-#define L4KC_F TO(_QWERTY)
-#define L4KC_G _______
+#define L4KC_A KC_1
+#define L4KC_S KC_2
+#define L4KC_D KC_3
+#define L4KC_F KC_4
+#define L4KC_G KC_5
 
-#define L4KC_H _______
-#define L4KC_J _______
-#define L4KC_K _______
-#define L4KC_L _______
-#define L4A_6 _______
+#define L4KC_H KC_6
+#define L4KC_J KC_7
+#define L4KC_K KC_8
+#define L4KC_L KC_9
+#define L4A_6 KC_0
 #define L4A_7 _______
 
 #define L4A_8  _______
