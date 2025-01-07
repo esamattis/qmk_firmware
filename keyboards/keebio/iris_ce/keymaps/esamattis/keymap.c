@@ -24,6 +24,8 @@ enum custom_layers {
 enum custom_keycodes {
     QMKBEST = SAFE_RANGE,
     BACKTICK,
+    CARET,
+    TILDE,
     MY_RBG
 };
 
@@ -83,14 +85,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
         break;
+    case CARET:
+        if (record->event.pressed) {
+            register_code(KC_RSFT);
+            tap_code(KC_RIGHT_BRACKET);
+            unregister_code(KC_RSFT);
+            tap_code(KC_SPC);
+            return false;
+        }
+    case TILDE:
+        if (record->event.pressed) {
+            register_code(KC_RALT);
+            tap_code(KC_RBRC);
+            unregister_code(KC_RALT);
+            tap_code(KC_SPC);
+            return false;
+        }
     case BACKTICK:
         if (record->event.pressed) {
             register_code(KC_LSFT);
             tap_code(KC_EQL);
             unregister_code(KC_LSFT);
             tap_code(KC_SPC);
+            return false;
         }
-        break;
     }
 
     return true;
@@ -195,15 +213,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_U LSFT(KC_3) // Hash #
 #define L2KC_I LSFT(KC_MINS) // Question mark ?
 #define L2KC_O LSFT(KC_1) // Exclamation mark !
-#define L2KC_P _______
+#define L2KC_P TILDE // Tilde ~
 #define L2A_4 _______
 
 #define L2A_5 _______
 #define L2KC_A LALT(KC_2) // At sign @
 #define L2KC_S _______
 #define L2KC_D _______
-#define L2KC_F _______
-#define L2KC_G _______
+#define L2KC_F LGUI(KC_C) // Paste
+#define L2KC_G LGUI(KC_V) // Copy
 #define L2KC_H KC_NUHS // Single quote '
 #define L2KC_J LSFT(KC_SLASH) // Underscore _
 #define L2KC_K LSFT(KC_2) // Double quote "
@@ -218,8 +236,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_V _______
 
 #define L2KC_B _______
-#define L2KC_N _______
-#define L2KC_M ALGR(KC_RBRC) // ~
+#define L2KC_N CARET // Caret ^
+#define L2KC_M RALT(KC_4) // $
 #define L2A_11 LSFT(KC_5) // Percent %
 #define L2A_12 LSFT(KC_6) // Ampersand &
 #define L2A_13 KC_MINS // +
