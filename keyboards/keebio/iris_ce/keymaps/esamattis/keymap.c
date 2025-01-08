@@ -41,11 +41,30 @@ void keyboard_post_init_user(void) {
     rgb_matrix_sethsv_noeeprom(170, 255, 255);
 }
 
+static uint16_t double_j_caps_exit_timer = 0;
+static bool double_j_caps_exiting = true;
 
 bool caps_word_press_user(uint16_t keycode) {
     #ifdef CONSOLE_ENABLE
         uprintf("WORD CAPS KL: kc: 0x%04X\n", keycode);
     #endif
+
+    if (keycode == KC_J) {
+        if (double_j_caps_exit_timer == 0) {
+            double_j_caps_exit_timer = timer_read();
+        } else {
+            uint16_t elapsed = timer_elapsed(double_j_caps_exit_timer);
+            double_j_caps_exit_timer = 0;
+            if (elapsed < TAPPING_TERM) {
+                // emit two backspaces in process_record_user()
+                // to delete the double JJ
+                double_j_caps_exiting = true;
+                return false;  // Deactivate Caps Word.
+            }
+        }
+    } else {
+        double_j_caps_exit_timer = 0;
+    }
 
 
     switch (keycode) {
@@ -72,6 +91,12 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed && double_j_caps_exiting) {
+        tap_code(KC_BACKSPACE);
+        tap_code(KC_BACKSPACE);
+        double_j_caps_exiting = false;
+        return false;
+    }
 
     switch (keycode) {
     case KC_Q:
