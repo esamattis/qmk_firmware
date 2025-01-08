@@ -1,6 +1,7 @@
 // Copyright 2023 Danny Nguyen (@nooges)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <stdint.h>
 #include "action.h"
 #include "config.h"
 #include "keycodes.h"
@@ -66,7 +67,6 @@ bool caps_word_press_user(uint16_t keycode) {
         double_j_caps_exit_timer = 0;
     }
 
-
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
@@ -91,7 +91,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!record->event.pressed && double_j_caps_exiting) {
+    if (double_j_caps_exiting && !record->event.pressed) {
         tap_code(KC_BACKSPACE);
         tap_code(KC_BACKSPACE);
         double_j_caps_exiting = false;
