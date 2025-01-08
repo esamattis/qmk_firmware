@@ -363,19 +363,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4A_6 KC_0
 #define L4A_7 _______
 
-#define L4A_8  KC_F1
-#define L4KC_Z KC_F2
-#define L4KC_X KC_F3
-#define L4KC_C KC_F4
-#define L4KC_V KC_F5
+#define L4A_8  _______
+#define L4KC_Z _______
+#define L4KC_X _______
+#define L4KC_C _______
+#define L4KC_V _______
 
-#define L4KC_B KC_F6
-#define L4KC_N KC_F7
-#define L4KC_M KC_F8
-#define L4A_11 KC_F9
-#define L4A_12 KC_F10
-#define L4A_13 KC_F11
-#define L4A_14 KC_F12
+#define L4KC_B _______
+#define L4KC_N _______
+#define L4KC_M _______
+#define L4A_11 _______
+#define L4A_12 _______
+#define L4A_13 _______
+#define L4A_14 _______
 
 #define L4A_9 _______
 #define L4A_10 _______
