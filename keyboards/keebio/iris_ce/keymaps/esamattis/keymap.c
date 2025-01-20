@@ -149,17 +149,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Layer 1
 #define L1A_1 _______
-#define L1KC_1 KC_1
-#define L1KC_2 KC_2
-#define L1KC_3 KC_3
-#define L1KC_4 KC_4
-#define L1KC_5 KC_5
-#define L1KC_6 KC_6
-#define L1KC_7 KC_7
-#define L1KC_8 KC_8
-#define L1KC_9 KC_9
-#define L1KC_0 KC_0
-#define L1A_2 _______
+#define L1KC_1 _______
+#define L1KC_2 _______
+#define L1KC_3 _______
+#define L1KC_4 _______
+#define L1KC_5 _______
+#define L1KC_6 _______
+#define L1KC_7 _______
+#define L1KC_8 _______
+#define L1KC_9  KC_F10
+#define L1KC_0  KC_F11
+#define L1A_2 KC_F12
 
 #define L1A_3 MO(_MOUSE)
 #define L1KC_Q KC_Q
