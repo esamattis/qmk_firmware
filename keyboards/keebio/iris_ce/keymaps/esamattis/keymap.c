@@ -233,7 +233,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_W _______
 #define L2KC_E LSFT(KC_4) // €
 #define L2KC_R _______
-#define L2KC_T _______
+#define L2KC_T LGUI(KC_T) // cmd + T
 #define L2KC_Y LALT(KC_7) // Pipe |
 #define L2KC_U LSFT(KC_3) // Hash #
 #define L2KC_I LSFT(KC_MINS) // Question mark ?
