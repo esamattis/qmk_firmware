@@ -230,9 +230,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define L2A_3 _______
 #define L2KC_Q _______
-#define L2KC_W _______
+#define L2KC_W LGUI(KC_W)
 #define L2KC_E LSFT(KC_4) // €
-#define L2KC_R _______
+#define L2KC_R LGUI(KC_R) // cmd + R
 #define L2KC_T LGUI(KC_T) // cmd + T
 #define L2KC_Y LALT(KC_7) // Pipe |
 #define L2KC_U LSFT(KC_3) // Hash #
@@ -242,7 +242,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_4 _______
 
 #define L2A_5 _______
-#define L2KC_A LALT(KC_2) // At sign @
+// #define L2KC_A LALT(KC_2) // At sign @
+#define L2KC_A LGUI(KC_A)
 #define L2KC_S _______
 #define L2KC_D _______
 #define L2KC_F LGUI(KC_C) // Paste
@@ -255,10 +256,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_7 _______
 
 #define L2A_8  _______
-#define L2KC_Z _______
-#define L2KC_X _______
-#define L2KC_C _______
-#define L2KC_V _______
+#define L2KC_Z LGUI(KC_Z) // Undo
+#define L2KC_X LGUI(KC_X) // Cut
+#define L2KC_C LGUI(KC_C) // Copy
+#define L2KC_V LGUI(KC_V) // Paste
 
 #define L2KC_B _______
 #define L2KC_N CARET // Caret ^
@@ -318,8 +319,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3KC_J KC_DOWN
 #define L3KC_K KC_UP
 #define L3KC_L KC_RGHT
-#define L3A_6 KC_HOME
-#define L3A_7 KC_END
+#define L3A_6 LGUI(KC_LEFT) // to beginning of line
+#define L3A_7 LGUI(KC_RIGHT) // to end of line
 
 #define L3A_8  _______
 #define L3KC_Z _______
