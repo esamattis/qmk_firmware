@@ -246,8 +246,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_A LGUI(KC_A)
 #define L2KC_S _______
 #define L2KC_D _______
-#define L2KC_F LGUI(KC_C) // Paste
-#define L2KC_G LGUI(KC_V) // Copy
+#define L2KC_F LGUI(KC_F)
+#define L2KC_G _______
 #define L2KC_H KC_NUHS // Single quote '
 #define L2KC_J LSFT(KC_SLASH) // Underscore _
 #define L2KC_K LSFT(KC_2) // Double quote "
