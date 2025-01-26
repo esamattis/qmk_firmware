@@ -148,7 +148,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define PASTE LGUI(KC_V)
 
 // Layer 1
-#define L1A_1 _______
+#define L1A_1 KC_ESC
 #define L1KC_1 _______
 #define L1KC_2 _______
 #define L1KC_3 _______
