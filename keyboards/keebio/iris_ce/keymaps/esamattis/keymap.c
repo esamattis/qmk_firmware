@@ -27,6 +27,7 @@ enum custom_keycodes {
     BACKTICK,
     CARET,
     TILDE,
+    SELECT_COPY_AND_RAYCAST,
     MY_RBG
 };
 
@@ -134,6 +135,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_SPC);
             return false;
         }
+    case SELECT_COPY_AND_RAYCAST:
+        if (record->event.pressed) {
+            // Select the previous word
+            register_code(KC_LOPT);
+            register_code(KC_LSFT);
+            tap_code(KC_LEFT);
+            unregister_code(KC_LSFT);
+            unregister_code(KC_LOPT);
+
+            // Copy to clipboard
+            register_code(KC_LCMD);
+            tap_code(KC_C);
+            unregister_code(KC_LCMD);
+
+            // Open Raycast
+            register_code(KC_LCMD);
+            tap_code(KC_SPACE);
+            unregister_code(KC_LCMD);
+            return false;
+        }
     }
 
     return true;
@@ -203,7 +224,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_13 KC_SLSH // Dash or hyphen -
 #define L1A_14 KC_NO
 
-#define L1A_9 _______
+#define L1A_9 SELECT_COPY_AND_RAYCAST
 #define L1A_10 _______
 
 #define L1A_15 KC_HYPR
