@@ -28,6 +28,7 @@ enum custom_keycodes {
     CARET,
     TILDE,
     SELECT_COPY_AND_RAYCAST,
+    SELECT_LAST_WORD,
     MY_RBG
 };
 
@@ -155,6 +156,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             unregister_code(KC_LCMD);
             return false;
         }
+    case SELECT_LAST_WORD:
+        if (record->event.pressed) {
+            // Select the previous word
+            register_code(KC_LOPT);
+            register_code(KC_LSFT);
+            tap_code(KC_LEFT);
+            unregister_code(KC_LSFT);
+            unregister_code(KC_LOPT);
+            return false;
+        }
     }
 
     return true;
@@ -222,7 +233,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_11 MT(MOD_LALT,KC_COMM) // Comma ,
 #define L1A_12 MT(MOD_LCTL,KC_DOT) // Period .
 #define L1A_13 KC_SLSH // Dash or hyphen -
-#define L1A_14 KC_NO
+#define L1A_14 SELECT_LAST_WORD
 
 #define L1A_9 SELECT_COPY_AND_RAYCAST
 #define L1A_10 _______
