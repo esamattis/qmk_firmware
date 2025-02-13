@@ -193,7 +193,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1KC_0  KC_F11
 #define L1A_2 KC_F12
 
-#define L1A_3 MO(_MOUSE)
+#define L1A_3 SELECT_LAST_WORD
 #define L1KC_Q KC_Q
 #define L1KC_W KC_W
 #define L1KC_E KC_E
@@ -221,7 +221,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_6 KC_SCLN // ö
 #define L1A_7 KC_QUOT // ä
 
-#define L1A_8  KC_NO
+#define L1A_8  MO(_MOUSE)
 #define L1KC_Z KC_Z
 #define L1KC_X MT(MOD_LCTL,KC_X)
 #define L1KC_C MT(MOD_LALT,KC_C)
