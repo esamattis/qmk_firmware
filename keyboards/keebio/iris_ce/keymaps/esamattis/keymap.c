@@ -411,7 +411,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4KC_0 _______
 #define L4A_2 _______
 
-#define L4A_3 _______
+#define L4A_3 DELETE_4_SPACES
 #define L4KC_Q _______
 #define L4KC_W _______
 #define L4KC_E _______
@@ -423,7 +423,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4KC_I _______
 #define L4KC_O _______
 #define L4KC_P _______
-#define L4A_4  DELETE_4_SPACES
+#define L4A_4  _______
 
 #define L4A_5 ADD_4_SPACES
 #define L4KC_A KC_1
