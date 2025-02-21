@@ -29,6 +29,8 @@ enum custom_keycodes {
     TILDE,
     SELECT_COPY_AND_RAYCAST,
     SELECT_LAST_WORD,
+    DELETE_4_SPACES,
+    ADD_4_SPACES,
     MY_RBG
 };
 
@@ -166,7 +168,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             unregister_code(KC_LOPT);
             return false;
         }
-    }
+    case DELETE_4_SPACES:
+            if (record->event.pressed) {
+                tap_code(KC_BSPC);
+                tap_code(KC_BSPC);
+                tap_code(KC_BSPC);
+                tap_code(KC_BSPC);
+                return false;
+            }
+        case ADD_4_SPACES:
+            if (record->event.pressed) {
+                tap_code(KC_SPC);
+                tap_code(KC_SPC);
+                tap_code(KC_SPC);
+                tap_code(KC_SPC);
+                return false;
+            }
+        }
 
     return true;
 };
@@ -405,9 +423,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4KC_I _______
 #define L4KC_O _______
 #define L4KC_P _______
-#define L4A_4  _______
+#define L4A_4  DELETE_4_SPACES
 
-#define L4A_5 _______
+#define L4A_5 ADD_4_SPACES
 #define L4KC_A KC_1
 #define L4KC_S KC_2
 #define L4KC_D KC_3
