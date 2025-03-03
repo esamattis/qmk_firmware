@@ -198,7 +198,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define PASTE LGUI(KC_V)
 
 // Layer 1
-#define L1A_1 KC_ESC
+#define L1A_1 _______
 #define L1KC_1 _______
 #define L1KC_2 _______
 #define L1KC_3 _______
@@ -239,7 +239,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_6 KC_SCLN // ö
 #define L1A_7 KC_QUOT // ä
 
-#define L1A_8  MO(_MOUSE)
+#define L1A_8  KC_ESC
 #define L1KC_Z KC_Z
 #define L1KC_X MT(MOD_LCTL,KC_X)
 #define L1KC_C MT(MOD_LALT,KC_C)
@@ -251,12 +251,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_11 MT(MOD_LALT,KC_COMM) // Comma ,
 #define L1A_12 MT(MOD_LCTL,KC_DOT) // Period .
 #define L1A_13 KC_SLSH // Dash or hyphen -
-#define L1A_14 SELECT_LAST_WORD
-
-#define L1A_9 SELECT_COPY_AND_RAYCAST
+#define L1A_14 KC_ESC
+#define L1A_9 MO(_MOUSE)
 #define L1A_10 _______
 
-#define L1A_15 KC_HYPR
 #define L1A_16 MO(_LOWER)
 #define L1A_17 KC_LSFT
 
