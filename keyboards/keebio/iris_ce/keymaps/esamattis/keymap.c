@@ -291,9 +291,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_4 _______
 
 #define L2A_5 _______
-// #define L2KC_A LALT(KC_2) // At sign @
 #define L2KC_A LGUI(KC_A)
-#define L2KC_S _______
+#define L2KC_S LALT(KC_2) // At sign @
 #define L2KC_D _______
 #define L2KC_F LGUI(KC_F)
 #define L2KC_G _______
