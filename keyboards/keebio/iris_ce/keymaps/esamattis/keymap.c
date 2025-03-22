@@ -255,6 +255,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_9 MO(_MOUSE)
 #define L1A_10 _______
 
+#define L1A_15 KC_HYPR
 #define L1A_16 MO(_LOWER)
 #define L1A_17 KC_LSFT
 
