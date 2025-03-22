@@ -290,7 +290,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_P TILDE // Tilde ~
 #define L2A_4 _______
 
-#define L2A_5 _______
+#define L2A_5 LGUI(KC_TAB) // Switch between windows
 #define L2KC_A LGUI(KC_A)
 #define L2KC_S LALT(KC_2) // At sign @
 #define L2KC_D _______
