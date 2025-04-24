@@ -456,7 +456,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define L4A_15 _______
 #define L4A_16 _______
-#define L4A_17 _______
+#define L4A_17 KC_SPACE
 
 #define L4A_18 _______
 #define L4A_19 _______
