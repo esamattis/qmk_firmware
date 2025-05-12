@@ -293,7 +293,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_5 LGUI(KC_TAB) // Switch between windows
 #define L2KC_A LGUI(KC_A)
 #define L2KC_S LALT(KC_2) // At sign @
-#define L2KC_D _______
+#define L2KC_D LGUI(KC_D)
 #define L2KC_F LGUI(KC_F)
 #define L2KC_G _______
 #define L2KC_H KC_NUHS // Single quote '
