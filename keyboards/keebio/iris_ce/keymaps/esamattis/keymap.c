@@ -6,6 +6,7 @@
 #include "config.h"
 #include "keycodes.h"
 #include "keymap_us.h"
+#include "print.h"
 #include "quantum_keycodes.h"
 #include "report.h"
 #include "rgb_matrix.h"

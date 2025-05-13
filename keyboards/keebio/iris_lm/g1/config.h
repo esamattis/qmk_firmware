@@ -3,6 +3,10 @@
 
 #pragma once
 
+// #define RGB_MATRIX_ENABLE 1
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD 1
+#define TAPPING_TERM 180
+
 /* Defines for the split keyboard setup */
 #define SERIAL_USART_DRIVER SD3         // USART 3
 #define SERIAL_USART_TX_PIN B10

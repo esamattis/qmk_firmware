@@ -1,6 +1,7 @@
 // Copyright 2023 Danny Nguyen (@nooges)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "print.h"
 #include QMK_KEYBOARD_H
 #include <stdint.h>
 #include "action.h"
@@ -43,6 +44,9 @@ void caps_word_set_user(bool active) {
 }
 
 void keyboard_post_init_user(void) {
+    // rgb_matrix_disable_noeeprom();
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    rgb_matrix_sethsv_noeeprom(HSV_OFF);
     rgb_matrix_sethsv_noeeprom(170, 255, 255);
 }
 
@@ -95,6 +99,8 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+
     if (double_j_caps_exiting && !record->event.pressed) {
         tap_code(KC_BACKSPACE);
         tap_code(KC_BACKSPACE);
