@@ -1,6 +1,7 @@
 // Copyright 2023 Danny Nguyen (@nooges)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include QMK_KEYBOARD_H
 #include <stdint.h>
 #include "action.h"
 #include "config.h"
@@ -10,7 +11,6 @@
 #include "report.h"
 #include "rgb_matrix.h"
 #include "send_string_keycodes.h"
-#include QMK_KEYBOARD_H
 
 // https://docs.qmk.fm/keycodes
 
