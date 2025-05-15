@@ -230,11 +230,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_4 KC_BACKSPACE
 
 #define L1A_5 KC_TAB
-#define L1KC_A KC_G
+#define L1KC_A KC_A
 #define L1KC_S KC_S
 #define L1KC_D KC_D
 #define L1KC_F KC_F
-#define L1KC_G KC_A
+#define L1KC_G KC_G
 
 #define L1KC_H KC_H
 #define L1KC_J KC_J
