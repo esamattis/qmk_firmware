@@ -107,17 +107,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-    case KC_Q:
-        if (record->event.pressed) {
-            // Hyper + Q does not work for Rectangle shortcut for some reason.
-            // So convert it to LCTL + LALT + LGUI + 0
-            bool is_hyper = get_mods() & MOD_BIT(KC_LCTL) && get_mods() & MOD_BIT(KC_LALT) && get_mods() & MOD_BIT(KC_LSFT) && get_mods() & MOD_BIT(KC_LGUI);
-            if (is_hyper) {
-                tap_code(KC_0);
-                return false;
-            }
-        }
-        break;
     case CARET:
         if (record->event.pressed) {
             register_code(KC_RSFT);
@@ -193,6 +182,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+#define EM_HYPR(kc) (QK_LCTL | QK_LSFT | QK_LALT | (kc))
+
 #define MT_X MT(MOD_LCTL,KC_X)
 #define MT_C MT(MOD_LALT,KC_C)
 #define MT_V MT(MOD_LGUI,KC_V)
@@ -202,15 +193,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define PASTE LGUI(KC_V)
 
 // Layer 1
-#define L1A_1 _______
-#define L1KC_1 _______
-#define L1KC_2 _______
-#define L1KC_3 _______
-#define L1KC_4 _______
-#define L1KC_5 _______
-#define L1KC_6 _______
-#define L1KC_7 _______
-#define L1KC_8 _______
+#define L1A_1 EM_HYPR(KC_SLASH)
+#define L1KC_1 EM_HYPR(KC_1)
+#define L1KC_2 EM_HYPR(KC_2)
+#define L1KC_3 EM_HYPR(KC_3)
+#define L1KC_4 EM_HYPR(KC_4)
+#define L1KC_5 EM_HYPR(KC_5)
+#define L1KC_6 EM_HYPR(KC_6)
+#define L1KC_7 EM_HYPR(KC_7)
+#define L1KC_8 EM_HYPR(KC_8)
 #define L1KC_9  KC_F10
 #define L1KC_0  KC_F11
 #define L1A_2 KC_F12
@@ -259,7 +250,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L1A_9 MO(_MOUSE)
 #define L1A_10 _______
 
-#define L1A_15 KC_HYPR
+// #define L1A_15 KC_HYPR
+#define L1A_15 EM_HYPR(KC_NO)
 #define L1A_16 MO(_LOWER)
 #define L1A_17 KC_LSFT
 
@@ -391,9 +383,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3A_9 _______
 #define L3A_10 _______
 
-#define L3A_15 _______
-#define L3A_16 _______
-#define L3A_17 _______
+#define L3A_15 KC_LCTL
+#define L3A_16 KC_LALT
+#define L3A_17 KC_LSFT
 
 #define L3A_18 _______
 #define L3A_19 _______
