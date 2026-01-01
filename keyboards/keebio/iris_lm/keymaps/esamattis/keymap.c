@@ -305,7 +305,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_C LGUI(KC_C) // Copy
 #define L2KC_V LGUI(KC_V) // Paste
 
-#define L2KC_B _______
+#define L2KC_B EM_HYPR(KC_5)
 #define L2KC_N CARET // Caret ^
 #define L2KC_M RALT(KC_4) // $
 #define L2A_11 LSFT(KC_5) // Percent %
