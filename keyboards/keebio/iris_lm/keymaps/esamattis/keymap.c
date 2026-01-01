@@ -408,11 +408,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L4A_3 DELETE_4_SPACES
 #define L4KC_Q _______
 #define L4KC_W _______
-#define L4KC_E _______
-#define L4KC_R _______
+#define L4KC_E EM_HYPR(KC_3)
+#define L4KC_R EM_HYPR(KC_4)
 #define L4KC_T _______
 
-#define L4KC_Y _______
+#define L4KC_Y EM_HYPR(KC_6)
 #define L4KC_U _______
 #define L4KC_I _______
 #define L4KC_O _______
