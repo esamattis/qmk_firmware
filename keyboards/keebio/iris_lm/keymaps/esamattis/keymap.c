@@ -30,7 +30,8 @@ enum custom_keycodes {
     SELECT_LAST_WORD,
     DELETE_4_SPACES,
     ADD_4_SPACES,
-    MY_RBG
+    MY_RBG,
+    BAD_PASSWORD
 };
 
 void caps_word_set_user(bool active) {
@@ -113,6 +114,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_RIGHT_BRACKET);
             unregister_code(KC_RSFT);
             tap_code(KC_SPC);
+            return false;
+        }
+    case BAD_PASSWORD:
+        if (record->event.pressed) {
+            SEND_STRING("mankelit ARPOIVAT 4732");
             return false;
         }
     case TILDE:
@@ -273,7 +279,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2KC_0 _______
 #define L2A_2 QK_BOOT
 
-#define L2A_3 _______
+#define L2A_3 BAD_PASSWORD
 #define L2KC_Q _______
 #define L2KC_W LGUI(KC_W)
 #define L2KC_E LSFT(KC_4) // €
