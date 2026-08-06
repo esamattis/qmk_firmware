@@ -4,6 +4,7 @@
 #include "action_util.h"
 #include "print.h"
 #include QMK_KEYBOARD_H
+#include "keymap_finnish.h"
 #include <stdint.h>
 #include "action.h"
 #include "config.h"
@@ -26,31 +27,179 @@ enum custom_keycodes {
     BACKTICK,
     CARET,
     TILDE,
-    SELECT_COPY_AND_RAYCAST,
     SELECT_LAST_WORD,
     DELETE_4_SPACES,
     ADD_4_SPACES,
     MY_RBG,
-    BAD_PASSWORD
+    BAD_PASSWORD,
+    MAC_MODE,
+    LINUX_MODE,
+    OS_CLOSE,
+    OS_RELOAD,
+    OS_NEW_TAB,
+    OS_SELECT_ALL,
+    OS_BOOKMARK,
+    OS_FIND,
+    OS_UNDO,
+    OS_CUT,
+    OS_COPY,
+    OS_PASTE,
+    OS_LINE_START,
+    OS_LINE_END,
+    OS_EURO,
+    OS_AT,
+    OS_PIPE,
+    OS_BACKSLASH,
+    OS_LEFT_BRACKET,
+    OS_RIGHT_BRACKET,
+    OS_LEFT_BRACE,
+    OS_RIGHT_BRACE,
+    OS_LEFT_ANGLE,
+    OS_RIGHT_ANGLE
 };
+
+typedef union {
+    uint32_t raw;
+    struct {
+        bool linux_mode : 1;
+    };
+} user_config_t;
+
+static user_config_t user_config;
+
+static void set_os_color(void) {
+    if (user_config.linux_mode) {
+        rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+    } else {
+        rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+    }
+}
 
 void caps_word_set_user(bool active) {
     if (active) {
         rgb_matrix_sethsv_noeeprom(200, 255, 255);
     } else {
-        rgb_matrix_sethsv_noeeprom(170, 255, 255);
+        set_os_color();
     }
 }
 
+void eeconfig_init_user(void) {
+    user_config.raw = 0;
+    eeconfig_update_user(user_config.raw);
+}
+
 void keyboard_post_init_user(void) {
-    // rgb_matrix_disable_noeeprom();
+    user_config.raw = eeconfig_read_user();
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-    rgb_matrix_sethsv_noeeprom(170, 255, 255);
+    set_os_color();
 }
 
 static uint16_t double_j_caps_exit_timer = 0;
 static bool double_j_caps_exiting = true;
+
+static uint16_t get_os_keycode(uint16_t keycode) {
+    if (user_config.linux_mode) {
+        switch (keycode) {
+            case OS_CLOSE:
+                return LCTL(KC_W);
+            case OS_RELOAD:
+                return LCTL(KC_R);
+            case OS_NEW_TAB:
+                return LCTL(KC_T);
+            case OS_SELECT_ALL:
+                return LCTL(KC_A);
+            case OS_BOOKMARK:
+                return LCTL(KC_D);
+            case OS_FIND:
+                return LCTL(KC_F);
+            case OS_UNDO:
+                return LCTL(KC_Z);
+            case OS_CUT:
+                return LCTL(KC_X);
+            case OS_COPY:
+                return LSFT(LCTL(KC_C));
+            case OS_PASTE:
+                return LSFT(LCTL(KC_V));
+            case OS_LINE_START:
+                return KC_HOME;
+            case OS_LINE_END:
+                return KC_END;
+            case SELECT_LAST_WORD:
+                return LSFT(LCTL(KC_LEFT));
+            case OS_EURO:
+                return FI_EURO;
+            case OS_AT:
+                return FI_AT;
+            case OS_PIPE:
+                return FI_PIPE;
+            case OS_BACKSLASH:
+                return FI_BSLS;
+            case OS_LEFT_BRACKET:
+                return FI_LBRC;
+            case OS_RIGHT_BRACKET:
+                return FI_RBRC;
+            case OS_LEFT_BRACE:
+                return FI_LCBR;
+            case OS_RIGHT_BRACE:
+                return FI_RCBR;
+            case OS_LEFT_ANGLE:
+                return FI_LABK;
+            case OS_RIGHT_ANGLE:
+                return FI_RABK;
+        }
+    } else {
+        switch (keycode) {
+            case OS_CLOSE:
+                return LGUI(KC_W);
+            case OS_RELOAD:
+                return LGUI(KC_R);
+            case OS_NEW_TAB:
+                return LGUI(KC_T);
+            case OS_SELECT_ALL:
+                return LGUI(KC_A);
+            case OS_BOOKMARK:
+                return LGUI(KC_D);
+            case OS_FIND:
+                return LGUI(KC_F);
+            case OS_UNDO:
+                return LGUI(KC_Z);
+            case OS_CUT:
+                return LGUI(KC_X);
+            case OS_COPY:
+                return LGUI(KC_C);
+            case OS_PASTE:
+                return LGUI(KC_V);
+            case OS_LINE_START:
+                return LGUI(KC_LEFT);
+            case OS_LINE_END:
+                return LGUI(KC_RIGHT);
+            case SELECT_LAST_WORD:
+                return LSFT(LALT(KC_LEFT));
+            case OS_EURO:
+                return LSFT(KC_4);
+            case OS_AT:
+                return LALT(KC_2);
+            case OS_PIPE:
+                return LALT(KC_7);
+            case OS_BACKSLASH:
+                return LSFT(LALT(KC_7));
+            case OS_LEFT_BRACKET:
+                return LALT(KC_8);
+            case OS_RIGHT_BRACKET:
+                return LALT(KC_9);
+            case OS_LEFT_BRACE:
+                return LSA(KC_8);
+            case OS_RIGHT_BRACE:
+                return LSA(KC_9);
+            case OS_LEFT_ANGLE:
+                return KC_GRV;
+            case OS_RIGHT_ANGLE:
+                return RSFT(KC_GRV);
+        }
+    }
+
+    return KC_NO;
+}
 
 bool caps_word_press_user(uint16_t keycode) {
     #ifdef CONSOLE_ENABLE
@@ -98,8 +247,6 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
-
     if (double_j_caps_exiting && !record->event.pressed) {
         tap_code(KC_BACKSPACE);
         tap_code(KC_BACKSPACE);
@@ -107,7 +254,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
 
+    uint16_t os_keycode = get_os_keycode(keycode);
+    if (os_keycode != KC_NO) {
+        if (record->event.pressed) {
+            tap_code16(os_keycode);
+        }
+        return false;
+    }
+
     switch (keycode) {
+    case MAC_MODE:
+        if (record->event.pressed) {
+            user_config.linux_mode = false;
+            eeconfig_update_user(user_config.raw);
+            set_os_color();
+        }
+        return false;
+    case LINUX_MODE:
+        if (record->event.pressed) {
+            user_config.linux_mode = true;
+            eeconfig_update_user(user_config.raw);
+            set_os_color();
+        }
+        return false;
     case CARET:
         if (record->event.pressed) {
             register_code(KC_RSFT);
@@ -137,36 +306,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_SPC);
             return false;
         }
-    case SELECT_COPY_AND_RAYCAST:
-        if (record->event.pressed) {
-            // Select the previous word
-            register_code(KC_LOPT);
-            register_code(KC_LSFT);
-            tap_code(KC_LEFT);
-            unregister_code(KC_LSFT);
-            unregister_code(KC_LOPT);
-
-            // Copy to clipboard
-            register_code(KC_LCMD);
-            tap_code(KC_C);
-            unregister_code(KC_LCMD);
-
-            // Open Raycast
-            register_code(KC_LCMD);
-            tap_code(KC_SPACE);
-            unregister_code(KC_LCMD);
-            return false;
-        }
-    case SELECT_LAST_WORD:
-        if (record->event.pressed) {
-            // Select the previous word
-            register_code(KC_LOPT);
-            register_code(KC_LSFT);
-            tap_code(KC_LEFT);
-            unregister_code(KC_LSFT);
-            unregister_code(KC_LOPT);
-            return false;
-        }
     case DELETE_4_SPACES:
             if (record->event.pressed) {
                 tap_code(KC_BSPC);
@@ -194,9 +333,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define MT_C MT(MOD_LALT,KC_C)
 #define MT_V MT(MOD_LGUI,KC_V)
 
-
-#define COPY LGUI(KC_C)
-#define PASTE LGUI(KC_V)
 
 // Layer 1
 #define L1A_1 EM_HYPR(KC_SLASH)
@@ -267,8 +403,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Layer 2
 #define L2A_1 MY_RBG
-#define L2KC_1 _______
-#define L2KC_2 _______
+#define L2KC_1 MAC_MODE
+#define L2KC_2 LINUX_MODE
 #define L2KC_3 _______
 #define L2KC_4 _______
 #define L2KC_5 _______
@@ -281,11 +417,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define L2A_3 BAD_PASSWORD
 #define L2KC_Q _______
-#define L2KC_W LGUI(KC_W)
-#define L2KC_E LSFT(KC_4) // €
-#define L2KC_R LGUI(KC_R) // cmd + R
-#define L2KC_T LGUI(KC_T) // cmd + T
-#define L2KC_Y LALT(KC_7) // Pipe |
+#define L2KC_W OS_CLOSE
+#define L2KC_E OS_EURO
+#define L2KC_R OS_RELOAD
+#define L2KC_T OS_NEW_TAB
+#define L2KC_Y OS_PIPE
 #define L2KC_U LSFT(KC_3) // Hash #
 #define L2KC_I LSFT(KC_MINS) // Question mark ?
 #define L2KC_O LSFT(KC_1) // Exclamation mark !
@@ -293,10 +429,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_4 _______
 
 #define L2A_5 LGUI(KC_TAB) // Switch between windows
-#define L2KC_A LGUI(KC_A)
-#define L2KC_S LALT(KC_2) // At sign @
-#define L2KC_D LGUI(KC_D)
-#define L2KC_F LGUI(KC_F)
+#define L2KC_A OS_SELECT_ALL
+#define L2KC_S OS_AT
+#define L2KC_D OS_BOOKMARK
+#define L2KC_F OS_FIND
 #define L2KC_G _______
 #define L2KC_H KC_NUHS // Single quote '
 #define L2KC_J LSFT(KC_SLASH) // Underscore _
@@ -306,10 +442,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_7 _______
 
 #define L2A_8  _______
-#define L2KC_Z LGUI(KC_Z) // Undo
-#define L2KC_X LGUI(KC_X) // Cut
-#define L2KC_C LGUI(KC_C) // Copy
-#define L2KC_V LGUI(KC_V) // Paste
+#define L2KC_Z OS_UNDO
+#define L2KC_X OS_CUT
+#define L2KC_C OS_COPY
+#define L2KC_V OS_PASTE
 
 #define L2KC_B EM_HYPR(KC_5)
 #define L2KC_N CARET // Caret ^
@@ -349,7 +485,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3KC_W _______
 #define L3KC_E RSFT(KC_8) // (
 #define L3KC_R RSFT(KC_9) // )
-#define L3KC_T LSFT(LALT(KC_7)) // Backslash
+#define L3KC_T OS_BACKSLASH
 
 #define L3KC_Y _______
 #define L3KC_U _______
@@ -359,24 +495,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L3A_4 _______
 
 #define L3A_5 _______
-#define L3KC_A LALT(KC_8) // [
-#define L3KC_S LALT(KC_9) // ]
-#define L3KC_D LSA(KC_8) // {
-#define L3KC_F LSA(KC_9) // }
+#define L3KC_A OS_LEFT_BRACKET
+#define L3KC_S OS_RIGHT_BRACKET
+#define L3KC_D OS_LEFT_BRACE
+#define L3KC_F OS_RIGHT_BRACE
 #define L3KC_G LSFT(KC_7) // /
 
 #define L3KC_H KC_LEFT
 #define L3KC_J KC_DOWN
 #define L3KC_K KC_UP
 #define L3KC_L KC_RGHT
-#define L3A_6 LGUI(KC_LEFT) // to beginning of line
-#define L3A_7 LGUI(KC_RIGHT) // to end of line
+#define L3A_6 OS_LINE_START
+#define L3A_7 OS_LINE_END
 
 #define L3A_8  _______
 #define L3KC_Z _______
 #define L3KC_X _______
-#define L3KC_C KC_GRV  // <
-#define L3KC_V RSFT(KC_GRV)  // >
+#define L3KC_C OS_LEFT_ANGLE
+#define L3KC_V OS_RIGHT_ANGLE
 #define L3KC_B LSFT(KC_0) // =
 
 #define L3KC_N _______
