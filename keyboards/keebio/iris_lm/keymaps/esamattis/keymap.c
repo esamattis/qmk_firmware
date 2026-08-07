@@ -34,6 +34,7 @@ enum custom_keycodes {
     BAD_PASSWORD,
     MAC_MODE,
     LINUX_MODE,
+    OS_QUIT,
     OS_CLOSE,
     OS_RELOAD,
     OS_NEW_TAB,
@@ -100,6 +101,8 @@ static bool double_j_caps_exiting = true;
 static uint16_t get_os_keycode(uint16_t keycode) {
     if (user_config.linux_mode) {
         switch (keycode) {
+            case OS_QUIT:
+                return LALT(KC_F4);
             case OS_CLOSE:
                 return LCTL(KC_W);
             case OS_RELOAD:
@@ -117,9 +120,9 @@ static uint16_t get_os_keycode(uint16_t keycode) {
             case OS_CUT:
                 return LCTL(KC_X);
             case OS_COPY:
-                return LSFT(LCTL(KC_C));
+                return LCTL(KC_C);
             case OS_PASTE:
-                return LSFT(LCTL(KC_V));
+                return LCTL(KC_V);
             case OS_LINE_START:
                 return KC_HOME;
             case OS_LINE_END:
@@ -149,6 +152,8 @@ static uint16_t get_os_keycode(uint16_t keycode) {
         }
     } else {
         switch (keycode) {
+            case OS_QUIT:
+                return LGUI(KC_Q);
             case OS_CLOSE:
                 return LGUI(KC_W);
             case OS_RELOAD:
@@ -416,7 +421,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #define L2A_2 QK_BOOT
 
 #define L2A_3 BAD_PASSWORD
-#define L2KC_Q _______
+#define L2KC_Q OS_QUIT
 #define L2KC_W OS_CLOSE
 #define L2KC_E OS_EURO
 #define L2KC_R OS_RELOAD
